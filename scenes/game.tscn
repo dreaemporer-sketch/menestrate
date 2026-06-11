@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dvyf17t8eg1to"]
+
+[ext_resource type="PackedScene" uid="uid://c3ivucsue8vk5" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://dig0kg5oxf3e8" path="res://img/683c9ad70b7e19001d962865.jpg" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://iy7il7yj1ywd" path="res://scenes/enemy.tscn" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://g8ddcjs8g7t5" path="res://scenes/bullet1.tscn" id="3_lnu2h"]
+
+[sub_resource type="Curve2D" id="Curve2D_iywne"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1162, 649, 0, 0, 0, 0, 1154, 1, 0, 0, 0, 0, 5, -3, 0, 0, 0, 0, 3, 642, 0, 0, 0, 0, 1165, 646)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_lbhrr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1154, -1, 0, 0, 0, 0, 1156, 3, 0, 0, 0, 0, 1162, 657, 0, 0, 0, 0, 7, 640, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1156, 6, 0, 0, 0, 0, 1154, -1)
+}
+point_count = 7
+
+[node name="Game" type="Node2D" unique_id=1573141406]
+
+[node name="background" type="Sprite2D" parent="." unique_id=1971262753]
+position = Vector2(582, 370.5)
+scale = Vector2(1.3535156, 0.91503906)
+texture = ExtResource("1_yqjtg")
+
+[node name="Player" parent="." unique_id=862858166 node_paths=PackedStringArray("enemy_spawn") instance=ExtResource("1_uwrxv")]
+position = Vector2(8, 20)
+enemy_spawn = NodePath("../enemypath/PathFollow2D")
+enemy_scene = ExtResource("3_lbhrr")
+
+[node name="Bullet1" parent="." unique_id=1147699032 instance=ExtResource("3_lnu2h")]
+position = Vector2(985.01526, -382.8079)
+
+[node name="enemypath" type="Path2D" parent="." unique_id=738624543]
+curve = SubResource("Curve2D_iywne")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="enemypath" unique_id=1864487291]
+position = Vector2(1162, 649)
+rotation = -1.5831413
+
+[node name="orbpath" type="Path2D" parent="." unique_id=1285190804]
+curve = SubResource("Curve2D_lbhrr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="orbpath" unique_id=1180163993]
+position = Vector2(1154, -1)
+rotation = 1.1071488
