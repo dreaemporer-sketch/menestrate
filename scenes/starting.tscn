@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c85bqlji0jrfh"]
+
+[ext_resource type="Texture2D" uid="uid://cu10h03td0xm1" path="res://img/683c9ad70b7e19001d962865.jpg" id="1_osrhh"]
+[ext_resource type="Texture2D" uid="uid://b0keaa8dfpig1" path="res://play.png" id="2_hc2nf"]
+
+[node name="Starting" type="Node2D" unique_id=1758605516]
+
+[node name="683c9Ad70b7e19001d962865" type="Sprite2D" parent="." unique_id=1831518166]
+position = Vector2(824, 320)
+scale = Vector2(2.4853516, 1.7548829)
+texture = ExtResource("1_osrhh")
+
+[node name="Button" type="Button" parent="." unique_id=818153458]
+offset_left = 29.0
+offset_top = 131.0
+offset_right = 397.0
+offset_bottom = 499.0
+icon = ExtResource("2_hc2nf")
+
+[node name="Button2" type="Button" parent="." unique_id=1300730466]
+offset_left = 733.0
+offset_top = 156.0
+offset_right = 963.0
+offset_bottom = 474.0
+
+[node name="Button3" type="Button" parent="." unique_id=1478735922]
+offset_left = 423.0
+offset_top = 158.0
+offset_right = 653.0
+offset_bottom = 476.0

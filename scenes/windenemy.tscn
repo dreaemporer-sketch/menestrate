@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c87i8qmev3scg"]
+
+[ext_resource type="Texture2D" uid="uid://crdljs65poghs" path="res://img/windenemy.png" id="1_wu4bi"]
+[ext_resource type="Script" uid="uid://6kgtkalob05e" path="res://scripts/windenemy.gd" id="2_s6nhb"]
+
+[node name="Windenemy" type="Node2D" unique_id=1948022408]
+
+[node name="Windenemy" type="Sprite2D" parent="." unique_id=1442667722]
+position = Vector2(15.5, 13.000004)
+scale = Vector2(0.13425928, 0.12017168)
+texture = ExtResource("1_wu4bi")
+script = ExtResource("2_s6nhb")
+health = 2
