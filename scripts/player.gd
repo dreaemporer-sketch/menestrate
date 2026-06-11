@@ -5,7 +5,6 @@
 extends CharacterBody2D
 
 @export var speed = 250
-
 @export var bullet_scene: PackedScene
 
 # BULLET DAMAGE
@@ -34,6 +33,8 @@ var bullet_damage = 1
 @export var round_label: Label
 @export var health_label: Label
 @export var continue_label: Label
+@export var stamina_label: Label
+@export var kills_label: Label 
 
 # PLAYER STATS
 var health = 100

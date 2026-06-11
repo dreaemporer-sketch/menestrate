@@ -1,128 +1,13 @@
 [gd_scene format=3 uid="uid://c3ivucsue8vk5"]
 
 [ext_resource type="Texture2D" uid="uid://d3yl3xo48ifif" path="res://img/document_0.png" id="1_g2els"]
-
-[sub_resource type="GDScript" id="GDScript_qhqgy"]
-script/source = "extends CharacterBody2D
-
-# --- MOVEMENT & COMBAT ---
-@export var speed: float = 200.0
-@export var bullet_scene: PackedScene = preload(\"res://scenes/bullet1.tscn\")
-
-# --- ENEMY SPAWNING ---
-@export var enemy_spawn: PathFollow2D
-@export var enemy_scene: PackedScene
-@export var spawn_rate: float = 2.0
-
-# --- TIMER ---
-@export var time_label: Label
-@export var survive_time: float = 180.0
-
-# --- VARIABLES ---
-var spawn_timer: float = 0.0
-var time_left: float
-var game_over: bool = false
-
-
-func _ready() -> void:
-	randomize()
-	time_left = survive_time
-
-
-func _physics_process(delta: float) -> void:
-	if game_over:
-		velocity = Vector2.ZERO
-		return
-
-	# --- MOVEMENT ---
-	var direction = Input.get_vector(
-		\"ui_left\",
-		\"ui_right\",
-		\"ui_up\",
-		\"ui_down\"
-	)
-
-	velocity = direction * speed
-	move_and_slide()
-
-	# --- LOOK AT MOUSE ---
-	look_at(get_global_mouse_position())
-
-	# --- SHOOTING ---
-	if Input.is_action_just_pressed(\"shoot\"):
-		shoot()
-
-
-func _process(delta: float) -> void:
-	if game_over:
-		return
-
-	# --- ENEMY SPAWNING ---
-	spawn_timer += delta
-
-	if spawn_timer >= spawn_rate:
-		spawn_enemy()
-		spawn_timer = 0.0
-
-	# --- TIMER ---
-	time_left -= delta
-
-	if time_left <= 0:
-		time_left = 0
-		win_game()
-
-	_update_timer_display()
-
-
-func shoot() -> void:
-	if bullet_scene == null:
-		return
-
-	var bullet = bullet_scene.instantiate()
-
-	get_tree().current_scene.add_child(bullet)
-
-	bullet.global_position = global_position
-
-	bullet.direction = (
-		get_global_mouse_position() - global_position
-	).normalized()
-
-	bullet.rotation = bullet.direction.angle()
-
-
-func spawn_enemy() -> void:
-	if enemy_scene == null or enemy_spawn == null:
-		return
-
-	enemy_spawn.progress_ratio = randf()
-
-	var enemy = enemy_scene.instantiate()
-
-	get_tree().current_scene.add_child(enemy)
-
-	enemy.global_position = enemy_spawn.global_position
-
-
-func _update_timer_display() -> void:
-	if time_label:
-		var minutes = int(time_left) / 60
-		var seconds = int(time_left) % 60
-
-		time_label.text = \"%d:%02d\" % [minutes, seconds]
-
-
-func win_game() -> void:
-	game_over = true
-
-	print(\"You Survived!\")
-"
+[ext_resource type="Script" uid="uid://c0rnk7drajhq5" path="res://scenes/player.gd" id="1_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(37, 41)
 
 [node name="Player" type="CharacterBody2D" unique_id=862858166 groups=["player"]]
-script = SubResource("GDScript_qhqgy")
+script = ExtResource("1_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1005876940]
 position = Vector2(-0.5, 0.5000019)

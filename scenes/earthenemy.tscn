@@ -6,7 +6,7 @@
 [node name="Earthenemy" type="Node2D" unique_id=835729046]
 
 [node name="Earthenemy2" type="Sprite2D" parent="." unique_id=90651875]
-position = Vector2(-8.9999695, -2.9999695)
-scale = Vector2(0.2387755, 0.25)
+position = Vector2(1, 0.9999998)
+scale = Vector2(0.101, 0.098)
 texture = ExtResource("1_mwg1l")
 script = ExtResource("2_3y6fs")

@@ -6,8 +6,8 @@
 [node name="Windenemy" type="Node2D" unique_id=1948022408]
 
 [node name="Windenemy" type="Sprite2D" parent="." unique_id=1442667722]
-position = Vector2(15.5, 13.000004)
-scale = Vector2(0.13425928, 0.12017168)
+position = Vector2(0, 5.684342e-14)
+scale = Vector2(0.101, 0.098)
 texture = ExtResource("1_wu4bi")
 script = ExtResource("2_s6nhb")
 health = 2
