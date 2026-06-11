@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://draxq85vj3e5"]
+
+[ext_resource type="Texture2D" uid="uid://cbd3crag6o1sp" path="res://img/lightening.png" id="1_e31j5"]
+[ext_resource type="Script" uid="uid://blfvo8ay0yw5" path="res://scripts/lightningenemy.gd" id="2_e27p5"]
+
+[node name="Lightening" type="Node2D" unique_id=174589588]
+
+[node name="Lightening" type="Sprite2D" parent="." unique_id=1920056183]
+position = Vector2(-0.5, -0.5)
+scale = Vector2(0.025714286, 0.025714286)
+texture = ExtResource("1_e31j5")
+script = ExtResource("2_e27p5")
+speed = 120
+health = 2

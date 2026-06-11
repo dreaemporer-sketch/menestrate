@@ -1,3 +1,12 @@
 [gd_scene format=3 uid="uid://wlow1744k3ck"]
 
+[ext_resource type="Script" uid="uid://bnf2erukyg4bp" path="res://scripts/fireenemy.gd" id="1_ya65e"]
+[ext_resource type="Texture2D" uid="uid://cvrh06eog5u0n" path="res://img/firenemy.png" id="2_mukyl"]
+
 [node name="FireResistance" type="Node2D" unique_id=1296189281]
+script = ExtResource("1_ya65e")
+
+[node name="Firenemy" type="Sprite2D" parent="." unique_id=932623356]
+scale = Vector2(0.07870372, 0.07725322)
+texture = ExtResource("2_mukyl")
+script = ExtResource("1_ya65e")

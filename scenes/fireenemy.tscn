@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cthffti2pu62d"]
+
+[ext_resource type="Texture2D" uid="uid://cvrh06eog5u0n" path="res://img/firenemy.png" id="1_ooup1"]
+[ext_resource type="Script" uid="uid://bnf2erukyg4bp" path="res://scripts/fireenemy.gd" id="1_ys8cu"]
+
+[node name="Fireenemy" type="Node2D" unique_id=1602759081]
+script = ExtResource("1_ys8cu")
+
+[node name="Firenemy" type="Sprite2D" parent="." unique_id=1870880765]
+position = Vector2(-2, -1)
+scale = Vector2(0.18055555, 0.16630901)
+texture = ExtResource("1_ooup1")
+script = ExtResource("1_ys8cu")
