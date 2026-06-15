@@ -41,7 +41,7 @@ var health = 100
 var stamina = 100
 
 var continues_left = 10
-
+var kills = 0
 # WEAPON
 var current_weapon = "glock"
 
@@ -219,7 +219,8 @@ func _physics_process(delta):
 	round_label.text = "Round: " + str(current_round)
 
 	health_label.text = "Health: " + str(health)
-
+	stamina_label.text= "stamina" + str(stamina)
+	kills_label.text = "Kills: " + str(kills)
 	continue_label.text = (
 		"Continues: " + str(continues_left)
 	)
@@ -334,7 +335,7 @@ func spawn_enemy():
 	]
 
 	var enemy = enemies.pick_random().instantiate()
-
+	enemy.health +=current_round-1
 	enemy_spawn.progress_ratio = randf()
 
 	enemy.global_position = (
@@ -446,7 +447,8 @@ func save_game():
 
 		"continues": continues_left,
 
-		"weapon": current_weapon
+		"weapon": current_weapon,
+		"kills" : kills
 	}
 
 	var file = FileAccess.open(
@@ -477,3 +479,16 @@ func load_game():
 		continues_left = data["continues"]
 
 		current_weapon = data["weapon"]
+		kills = data["kills"]
+		update_weapon()
+	func recoil():
+
+	var strength = 10
+
+	if current_weapon == "machine":
+		strength = 5
+
+	var tween = get_tree().create_tween()
+
+	tween.tween_property(gun_sprite, "position", Vector2(-strength, 0), 0.05)
+	tween.tween_property(gun_sprite, "position", Vector2(0, 0), 0.08)

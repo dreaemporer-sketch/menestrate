@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c85bqlji0jrfh"]
 
 [ext_resource type="Texture2D" uid="uid://cu10h03td0xm1" path="res://img/683c9ad70b7e19001d962865.jpg" id="1_osrhh"]
-[ext_resource type="Texture2D" uid="uid://b0keaa8dfpig1" path="res://play.png" id="2_hc2nf"]
+[ext_resource type="Texture2D" uid="uid://b0keaa8dfpig1" path="res://img/play.png" id="2_hc2nf"]
 
 [node name="Starting" type="Node2D" unique_id=1758605516]
 

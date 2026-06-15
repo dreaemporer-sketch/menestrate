@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cyc1odyd3mxaa"]
 
-[ext_resource type="Texture2D" uid="uid://vookvpryhrwl" path="res://earthenemy.png" id="1_mwg1l"]
+[ext_resource type="Texture2D" uid="uid://vookvpryhrwl" path="res://img/earthenemy.png" id="1_mwg1l"]
 [ext_resource type="Script" uid="uid://yndael1l27sg" path="res://scripts/earthenemy.gd" id="2_3y6fs"]
 
 [node name="Earthenemy" type="Node2D" unique_id=835729046]

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://df007im8l0v41"]
+
+[ext_resource type="Texture2D" uid="uid://d4l5ciemaud3f" path="res://img/waterenemy.png" id="1_brh2s"]
+
+[node name="Waterenemy" type="Node2D" unique_id=407008822]
+
+[node name="Waterenemy2" type="Sprite2D" parent="." unique_id=1317959516]
+position = Vector2(1, 1)
+scale = Vector2(0.101, 0.098)
+texture = ExtResource("1_brh2s")

@@ -47,8 +47,11 @@ func take_damage(amount, element = "none"):
 
 	if health <= 0:
 
-		queue_free()
+		if player != null:
 
+			player.kills += 1
+
+		queue_free()
 
 func _on_area_2d_body_entered(body):
 

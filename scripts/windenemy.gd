@@ -8,3 +8,4 @@ func _ready():
 	resistance = "wind"
 	enemy_type = "wind"
 	super._ready()
+	

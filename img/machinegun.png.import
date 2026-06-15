@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vookvpryhrwl"
-path="res://.godot/imported/earthenemy.png-66f8b4270d611c46620016b1e1a5fccb.ctex"
+uid="uid://djwm5w6ws4qak"
+path="res://.godot/imported/machinegun.png-be09eb0b5d3cc446ce4ae4641ee13954.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://earthenemy.png"
-dest_files=["res://.godot/imported/earthenemy.png-66f8b4270d611c46620016b1e1a5fccb.ctex"]
+source_file="res://img/machinegun.png"
+dest_files=["res://.godot/imported/machinegun.png-be09eb0b5d3cc446ce4ae4641ee13954.ctex"]
 
 [params]
 
