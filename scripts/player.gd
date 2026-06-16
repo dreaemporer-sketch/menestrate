@@ -1,6 +1,3 @@
-# =========================
-# player.gd
-# =========================
 
 extends CharacterBody2D
 
@@ -26,16 +23,6 @@ var bullet_damage = 1
 @export var enemy_spawn: PathFollow2D
 @export var orb_spawn: PathFollow2D
 
-# UI LABELS
-@export var time_label: Label
-@export var weapon_label: Label
-@export var element_label: Label
-@export var round_label: Label
-@export var health_label: Label
-@export var continue_label: Label
-@export var stamina_label: Label
-@export var kills_label: Label 
-
 # PLAYER STATS
 var health = 100
 var stamina = 100
@@ -44,32 +31,24 @@ var continues_left = 10
 var kills = 0
 # WEAPON
 var current_weapon = "glock"
-
 var fire_rate = 0.4
-
 var shoot_timer = 0.0
-
 # ELEMENT
 var current_element = "none"
-
 var element_timer = 0.0
-
 var element_duration = 120.0
-
 # ROUND SYSTEM
 var survive_time = 0.0
-
 var current_round = 1
-
 # SPAWN TIMERS
 var enemy_spawn_timer = 0.0
-
 var orb_spawned_this_round = false
-
 # PAUSE
 var paused_game = false
-
-
+#guns
+@export var glock:Sprite2D
+@export var shotgun:Sprite2D
+@export var machinegun:Sprite2D
 func _ready():
 
 	randomize()
@@ -210,21 +189,6 @@ func _physics_process(delta):
 	# UI
 	# =====================
 
-	time_label.text = "Time: " + str(int(survive_time))
-
-	weapon_label.text = "Weapon: " + current_weapon
-
-	element_label.text = "Element: " + current_element
-
-	round_label.text = "Round: " + str(current_round)
-
-	health_label.text = "Health: " + str(health)
-	stamina_label.text= "stamina" + str(stamina)
-	kills_label.text = "Kills: " + str(kills)
-	continue_label.text = (
-		"Continues: " + str(continues_left)
-	)
-
 	save_game()
 
 
@@ -266,7 +230,6 @@ func shoot():
 	# NORMAL GUNS
 
 	else:
-
 		var bullet = bullet_scene.instantiate()
 
 		get_parent().add_child(bullet)
@@ -294,29 +257,14 @@ func update_weapon():
 	match current_weapon:
 
 		"glock":
-
 			fire_rate = 0.4
-
 			bullet_damage = 2
-
-		"rifle":
-
-			fire_rate = 0.2
-
-			bullet_damage = 1
-
 		"machine":
-
 			fire_rate = 0.08
-
 			bullet_damage = 1
-
 		"shotgun":
-
 			fire_rate = 0.8
-
 			bullet_damage = 4
-
 
 # =========================
 # ENEMY SPAWNING
@@ -481,14 +429,21 @@ func load_game():
 		current_weapon = data["weapon"]
 		kills = data["kills"]
 		update_weapon()
-	func recoil():
-
-	var strength = 10
-
-	if current_weapon == "machine":
-		strength = 5
-
+func recoil():
+	
 	var tween = get_tree().create_tween()
 
-	tween.tween_property(gun_sprite, "position", Vector2(-strength, 0), 0.05)
-	tween.tween_property(gun_sprite, "position", Vector2(0, 0), 0.08)
+	if current_weapon == "glock":
+
+		tween.tween_property(glock, "position", Vector2(-10, 0), 0.05)
+		tween.tween_property(glock, "position", Vector2(0, 0), 0.08)
+
+	if current_weapon == "shotgun":
+
+		tween.tween_property(shotgun, "position", Vector2(-15, 0), 0.05)
+		tween.tween_property(shotgun, "position", Vector2(0, 0), 0.08)
+
+	if current_weapon == "machine":
+
+		tween.tween_property(machinegun, "position", Vector2(-8, 0), 0.05)
+		tween.tween_property(machinegun, "position", Vector2(0, 0), 0.08)

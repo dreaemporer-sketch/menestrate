@@ -1,3 +1,51 @@
 [gd_scene format=3 uid="uid://df5l34mwwyv20"]
 
-[node name="Hud" type="CanvasLayer" unique_id=1767084392]
+[ext_resource type="Script" uid="uid://b8s5px61qpmw7" path="res://scripts/hud.gd" id="1_ahhtf"]
+
+[node name="Hud" type="CanvasLayer" unique_id=1767084392 node_paths=PackedStringArray("player", "time_label", "weapon_label", "element_label", "round_label", "health_label", "continue_label", "stamina_label", "kills_label")]
+script = ExtResource("1_ahhtf")
+player = NodePath("player")
+time_label = NodePath("time_label")
+weapon_label = NodePath("weapon_label")
+element_label = NodePath("element_label")
+round_label = NodePath("round_label")
+health_label = NodePath("health_label")
+continue_label = NodePath("continue_label")
+stamina_label = NodePath("stamina_label")
+kills_label = NodePath("kills_label")
+
+[node name="time_label" type="Label" parent="." unique_id=131145053]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="weapon_label" type="Label" parent="." unique_id=893197261]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="element_label" type="Label" parent="." unique_id=1184434624]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="round_label" type="Label" parent="." unique_id=1324131143]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="health_label" type="Label" parent="." unique_id=664900302]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="continue_label" type="Label" parent="." unique_id=1292159945]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="stamina_label" type="Label" parent="." unique_id=1613904178]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="kills_label" type="Label" parent="." unique_id=307418282]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="player" type="Label" parent="." unique_id=516644080]
+offset_right = 40.0
+offset_bottom = 23.0

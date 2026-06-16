@@ -4,27 +4,31 @@
 [ext_resource type="Script" uid="uid://c6ok8bps3ljnt" path="res://scripts/player.gd" id="1_smehm"]
 [ext_resource type="PackedScene" uid="uid://iy7il7yj1ywd" path="res://scenes/enemy.tscn" id="2_ur7pv"]
 [ext_resource type="PackedScene" uid="uid://cthffti2pu62d" path="res://scenes/fireenemy.tscn" id="3_y4r1p"]
+[ext_resource type="PackedScene" uid="uid://df007im8l0v41" path="res://scenes/waterenemy.tscn" id="4_3v2ag"]
 [ext_resource type="PackedScene" uid="uid://cyc1odyd3mxaa" path="res://scenes/earthenemy.tscn" id="4_d2wvv"]
 [ext_resource type="PackedScene" uid="uid://draxq85vj3e5" path="res://scenes/lightening.tscn" id="5_3v2ag"]
 [ext_resource type="PackedScene" uid="uid://c87i8qmev3scg" path="res://scenes/windenemy.tscn" id="6_jej6c"]
 [ext_resource type="PackedScene" uid="uid://cobcfk5jplfk2" path="res://scenes/orb.tscn" id="7_f1ej7"]
-[ext_resource type="Texture2D" uid="uid://ruy1ikwckp1g" path="res://img/download.png" id="9_y4r1p"]
-[ext_resource type="Texture2D" uid="uid://b8bxpffar6f5m" path="res://img/download (1).png" id="10_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://ruy1ikwckp1g" path="res://img/glock.png" id="9_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://b8bxpffar6f5m" path="res://img/shotgun.png" id="10_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://djwm5w6ws4qak" path="res://img/machinegun.png" id="11_d2wvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(37, 41)
 
-[node name="Player" type="CharacterBody2D" unique_id=862858166 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=862858166 node_paths=PackedStringArray("glock", "shotgun", "machinegun") groups=["player"]]
 script = ExtResource("1_smehm")
-speed = null
 fast_enemy_scene = ExtResource("2_ur7pv")
 tank_enemy_scene = ExtResource("2_ur7pv")
 fire_enemy_scene = ExtResource("3_y4r1p")
+water_enemy_scene = ExtResource("4_3v2ag")
 earth_enemy_scene = ExtResource("4_d2wvv")
 lightning_enemy_scene = ExtResource("5_3v2ag")
 wind_enemy_scene = ExtResource("6_jej6c")
 orb_scene = ExtResource("7_f1ej7")
+glock = NodePath("glock")
+shotgun = NodePath("shotgun")
+machinegun = NodePath("Machinegun")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1005876940]
 position = Vector2(-0.5, 0.5000019)
@@ -35,12 +39,12 @@ position = Vector2(-0.4999962, 0.5)
 scale = Vector2(0.77083325, 0.8541667)
 texture = ExtResource("1_g2els")
 
-[node name="Download" type="Sprite2D" parent="." unique_id=1926005343]
+[node name="glock" type="Sprite2D" parent="." unique_id=1926005343]
 position = Vector2(21, -1)
 scale = Vector2(0.18047337, 0.17567568)
 texture = ExtResource("9_y4r1p")
 
-[node name="Download(1)" type="Sprite2D" parent="." unique_id=1857791807]
+[node name="shotgun" type="Sprite2D" parent="." unique_id=1857791807]
 position = Vector2(255, 208)
 texture = ExtResource("10_d2wvv")
 
