@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var player: Node
+@export var panel: Control 
 @export var time_label: Label
 @export var weapon_label: Label
 @export var element_label: Label
@@ -23,3 +24,9 @@ func _process(_delta):
 	stamina_label.text = "Stamina: " + str(player.stamina)
 	kills_label.text = "Kills: " + str(player.kills)
 	continue_label.text = "Continues: " + str(player.continues_left)
+
+func _read():
+	panel.visible=false
+func _on_button_pressed():
+	panel.visible = !panel.visible
+	

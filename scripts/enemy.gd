@@ -34,7 +34,34 @@ func _physics_process(delta):
 
 
 func take_damage(amount, element = "none"):
+	if element == resistance:
+		amount *= 0.3 # resistant
 
+	elif element == "water" and resistance == "fire":
+		amount *= 2 # weakness
+
+	elif element == "fire" and resistance == "earth":
+		amount *= 2
+
+	elif element == "earth" and resistance == "lightning":
+		amount *= 2
+
+	elif element == "lightning" and resistance == "water":
+		amount *= 2
+
+	elif element == "wind" and resistance == "earth":
+		amount *= 2
+
+
+	health -= amount
+
+
+	if health <= 0:
+
+		if player != null:
+			player.kills += 1
+
+		queue_free()
 	# RESISTANCE
 
 	if element == resistance:

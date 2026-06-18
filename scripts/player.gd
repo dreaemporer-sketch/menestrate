@@ -1,4 +1,3 @@
-
 extends CharacterBody2D
 
 @export var speed = 250
@@ -8,6 +7,7 @@ extends CharacterBody2D
 var bullet_damage = 1
 
 # ENEMIES
+@export var normal_enemy_scene: PackedScene
 @export var fast_enemy_scene: PackedScene
 @export var tank_enemy_scene: PackedScene
 @export var fire_enemy_scene: PackedScene
@@ -59,7 +59,8 @@ func _ready():
 
 
 func _physics_process(delta):
-
+	survive_time += delta
+	print(survive_time) 
 	# =====================
 	# PAUSE
 	# =====================
@@ -155,7 +156,9 @@ func _physics_process(delta):
 
 	enemy_spawn_timer += delta
 
-	if enemy_spawn_timer >= 2:
+	var spawn_delay = max(0.3, 2.0 - current_round * 0.15)
+
+	if enemy_spawn_timer >= spawn_delay:
 
 		spawn_enemy()
 
@@ -273,25 +276,39 @@ func update_weapon():
 func spawn_enemy():
 
 	var enemies = [
-		fast_enemy_scene,
-		tank_enemy_scene,
-		fire_enemy_scene,
-		water_enemy_scene,
-		earth_enemy_scene,
-		lightning_enemy_scene,
-		wind_enemy_scene
+		normal_enemy_scene
 	]
 
+	if current_round >= 2:
+		enemies.append(fast_enemy_scene)
+
+	if current_round >= 3:
+		enemies.append(tank_enemy_scene)
+
+	if current_round >= 4:
+		enemies.append(lightning_enemy_scene)
+
+	if current_round >= 5:
+		enemies.append(wind_enemy_scene)
+
+	if current_round >= 6:
+		enemies.append(water_enemy_scene)
+
+	if current_round >= 7:
+		enemies.append(fire_enemy_scene)
+
+	if current_round >= 8:
+		enemies.append(earth_enemy_scene)
+
 	var enemy = enemies.pick_random().instantiate()
-	enemy.health +=current_round-1
+
+	enemy.health += current_round - 1
+
 	enemy_spawn.progress_ratio = randf()
 
-	enemy.global_position = (
-		enemy_spawn.global_position
-	)
+	enemy.global_position = enemy_spawn.global_position
 
 	get_parent().add_child(enemy)
-
 
 # =========================
 # ORB SPAWNING

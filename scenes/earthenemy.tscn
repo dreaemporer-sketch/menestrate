@@ -3,10 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://vookvpryhrwl" path="res://img/earthenemy.png" id="1_mwg1l"]
 [ext_resource type="Script" uid="uid://yndael1l27sg" path="res://scripts/earthenemy.gd" id="2_3y6fs"]
 
-[node name="Earthenemy" type="Node2D" unique_id=835729046]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3y6fs"]
+size = Vector2(66, 64)
+
+[node name="Earthenemy" type="CharacterBody2D" unique_id=1191821179]
+script = ExtResource("2_3y6fs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=160936363]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_3y6fs")
 
 [node name="Earthenemy2" type="Sprite2D" parent="." unique_id=90651875]
 position = Vector2(1, 0.9999998)
 scale = Vector2(0.101, 0.098)
 texture = ExtResource("1_mwg1l")
-script = ExtResource("2_3y6fs")

@@ -3,12 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://cvrh06eog5u0n" path="res://img/firenemy.png" id="1_ooup1"]
 [ext_resource type="Script" uid="uid://bnf2erukyg4bp" path="res://scripts/fireenemy.gd" id="1_ys8cu"]
 
-[node name="Fireenemy" type="Node2D" unique_id=1602759081]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys8cu"]
+size = Vector2(87.164734, 102.44932)
+
+[node name="Fireenemy" type="CharacterBody2D" unique_id=1527854430]
 scale = Vector2(0.101, 0.098)
 script = ExtResource("1_ys8cu")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=266655401]
+position = Vector2(-4.7683716e-07, 4.7683716e-07)
+scale = Vector2(0.134, 0.120999984)
+shape = SubResource("RectangleShape2D_ys8cu")
+
 [node name="Firenemy" type="Sprite2D" parent="." unique_id=1870880765]
 position = Vector2(0, -5.9604645e-08)
-scale = Vector2(0.18055555, 0.16630901)
+scale = Vector2(0.121, 0.134)
 texture = ExtResource("1_ooup1")
-script = ExtResource("1_ys8cu")

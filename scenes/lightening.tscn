@@ -3,12 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://cbd3crag6o1sp" path="res://img/lightening.png" id="1_e31j5"]
 [ext_resource type="Script" uid="uid://blfvo8ay0yw5" path="res://scripts/lightningenemy.gd" id="2_e27p5"]
 
-[node name="Lightening" type="Node2D" unique_id=174589588]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e31j5"]
+size = Vector2(28, 27)
+
+[node name="Lightening" type="CharacterBody2D" unique_id=113308416]
+script = ExtResource("2_e27p5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1722992562]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_e31j5")
 
 [node name="Lightening" type="Sprite2D" parent="." unique_id=1920056183]
 position = Vector2(0, -2.9802322e-08)
 scale = Vector2(0.101, 0.098)
 texture = ExtResource("1_e31j5")
-script = ExtResource("2_e27p5")
-speed = 120
-health = 2

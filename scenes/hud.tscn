@@ -15,37 +15,64 @@ stamina_label = NodePath("stamina_label")
 kills_label = NodePath("kills_label")
 
 [node name="time_label" type="Label" parent="." unique_id=131145053]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 29.0
+offset_right = 36.0
+offset_bottom = 52.0
+text = "time"
 
 [node name="weapon_label" type="Label" parent="." unique_id=893197261]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 113.0
+offset_right = 66.0
+offset_bottom = 136.0
+text = "weapon:"
 
 [node name="element_label" type="Label" parent="." unique_id=1184434624]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 82.0
+offset_right = 69.0
+offset_bottom = 105.0
+text = "element:"
 
 [node name="round_label" type="Label" parent="." unique_id=1324131143]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 49.0
+offset_top = 83.0
+offset_right = 96.0
+offset_bottom = 132.0
+text = "round
+"
 
 [node name="health_label" type="Label" parent="." unique_id=664900302]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 1.0
+offset_top = 99.0
+offset_right = 56.0
+offset_bottom = 122.0
+text = "health:"
 
 [node name="continue_label" type="Label" parent="." unique_id=1292159945]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 64.0
+offset_right = 81.0
+offset_bottom = 87.0
+text = "continues:"
 
 [node name="stamina_label" type="Label" parent="." unique_id=1613904178]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 129.0
+offset_right = 67.0
+offset_bottom = 152.0
+text = "stamina:"
 
 [node name="kills_label" type="Label" parent="." unique_id=307418282]
+offset_top = 46.0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 69.0
+text = "kills:"
 
 [node name="player" type="Label" parent="." unique_id=516644080]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 145.0
+offset_right = 49.0
+offset_bottom = 168.0
+text = "player"
+
+[node name="Button" type="Button" parent="." unique_id=703225655]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "menu
+"

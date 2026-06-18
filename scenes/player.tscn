@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d3yl3xo48ifif" path="res://img/document_0.png" id="1_g2els"]
 [ext_resource type="Script" uid="uid://c6ok8bps3ljnt" path="res://scripts/player.gd" id="1_smehm"]
+[ext_resource type="PackedScene" uid="uid://g8ddcjs8g7t5" path="res://scenes/bullet1.tscn" id="2_jej6c"]
 [ext_resource type="PackedScene" uid="uid://iy7il7yj1ywd" path="res://scenes/enemy.tscn" id="2_ur7pv"]
 [ext_resource type="PackedScene" uid="uid://cthffti2pu62d" path="res://scenes/fireenemy.tscn" id="3_y4r1p"]
 [ext_resource type="PackedScene" uid="uid://df007im8l0v41" path="res://scenes/waterenemy.tscn" id="4_3v2ag"]
@@ -16,8 +17,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(37, 41)
 
-[node name="Player" type="CharacterBody2D" unique_id=862858166 node_paths=PackedStringArray("glock", "shotgun", "machinegun") groups=["player"]]
+[sub_resource type="Curve2D" id="Curve2D_f1ej7"]
+
+[sub_resource type="Curve2D" id="Curve2D_oprun"]
+
+[node name="Player" type="CharacterBody2D" unique_id=862858166 node_paths=PackedStringArray("enemy_spawn", "orb_spawn", "glock", "shotgun", "machinegun") groups=["player"]]
 script = ExtResource("1_smehm")
+bullet_scene = ExtResource("2_jej6c")
+normal_enemy_scene = ExtResource("2_ur7pv")
 fast_enemy_scene = ExtResource("2_ur7pv")
 tank_enemy_scene = ExtResource("2_ur7pv")
 fire_enemy_scene = ExtResource("3_y4r1p")
@@ -26,6 +33,8 @@ earth_enemy_scene = ExtResource("4_d2wvv")
 lightning_enemy_scene = ExtResource("5_3v2ag")
 wind_enemy_scene = ExtResource("6_jej6c")
 orb_scene = ExtResource("7_f1ej7")
+enemy_spawn = NodePath("enemyspawn/PathFollow2D")
+orb_spawn = NodePath("orbspawn/PathFollow2D")
 glock = NodePath("glock")
 shotgun = NodePath("shotgun")
 machinegun = NodePath("Machinegun")
@@ -45,10 +54,21 @@ scale = Vector2(0.18047337, 0.17567568)
 texture = ExtResource("9_y4r1p")
 
 [node name="shotgun" type="Sprite2D" parent="." unique_id=1857791807]
-position = Vector2(255, 208)
+position = Vector2(18.000015, 3)
+scale = Vector2(0.20588236, 0.22413793)
 texture = ExtResource("10_d2wvv")
 
 [node name="Machinegun" type="Sprite2D" parent="." unique_id=1438646296]
 position = Vector2(18.999998, 2.000001)
 scale = Vector2(-0.022424318, 0.023856336)
 texture = ExtResource("11_d2wvv")
+
+[node name="enemyspawn" type="Path2D" parent="." unique_id=142086908]
+curve = SubResource("Curve2D_f1ej7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="enemyspawn" unique_id=621460028]
+
+[node name="orbspawn" type="Path2D" parent="." unique_id=2047555878]
+curve = SubResource("Curve2D_oprun")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="orbspawn" unique_id=763671669]
