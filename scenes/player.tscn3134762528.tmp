@@ -23,6 +23,7 @@ size = Vector2(37, 41)
 
 [node name="Player" type="CharacterBody2D" unique_id=862858166 node_paths=PackedStringArray("enemy_spawn", "orb_spawn", "glock", "shotgun", "machinegun") groups=["player"]]
 script = ExtResource("1_smehm")
+speed = null
 bullet_scene = ExtResource("2_jej6c")
 normal_enemy_scene = ExtResource("2_ur7pv")
 fast_enemy_scene = ExtResource("2_ur7pv")

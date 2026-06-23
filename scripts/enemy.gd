@@ -62,21 +62,6 @@ func take_damage(amount, element = "none"):
 			player.kills += 1
 
 		queue_free()
-	# RESISTANCE
-
-	if element == resistance:
-
-		amount *= 0.3
-
-	health -= amount
-
-	if health <= 0:
-
-		if player != null:
-
-			player.kills += 1
-
-		queue_free()
 
 func _on_area_2d_body_entered(body):
 

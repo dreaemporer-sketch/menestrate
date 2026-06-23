@@ -23,6 +23,50 @@ var bullet_damage = 1
 @export var enemy_spawn: PathFollow2D
 @export var orb_spawn: PathFollow2D
 
+# Enemy Boss
+var boss_spawned = false
+
+var fire_unlocked = false
+var wind_unlocked = false
+var water_unlocked = false
+var lightning_unlocked = false
+var earth_unlocked = false
+
+@export var fire_boss_scene: PackedScene
+@export var wind_boss_scene: PackedScene
+@export var water_boss_scene: PackedScene
+@export var lightning_boss_scene: PackedScene
+@export var earth_boss_scene: PackedScene
+func spawn_boss():
+
+	var boss
+
+	match current_round:
+
+		5:
+			boss = fire_boss_scene.instantiate()
+
+		10:
+			boss = wind_boss_scene.instantiate()
+
+		15:
+			boss = water_boss_scene.instantiate()
+
+		20:
+			boss = lightning_boss_scene.instantiate()
+
+		25:
+			boss = earth_boss_scene.instantiate()
+
+	if boss == null:
+		return
+
+	enemy_spawn.progress_ratio = randf()
+
+	boss.global_position = enemy_spawn.global_position
+
+	get_parent().add_child(boss)
+
 # PLAYER STATS
 var health = 100
 var stamina = 100
@@ -49,18 +93,34 @@ var paused_game = false
 @export var glock:Sprite2D
 @export var shotgun:Sprite2D
 @export var machinegun:Sprite2D
+var current_gun
+
 func _ready():
 
 	randomize()
 
 	add_to_group("player")
-
+	
+	update_weapon()
+	
 	load_game()
 
-
+	current_gun = glock
+	
 func _physics_process(delta):
+	enemy_spawn_timer += delta
 	survive_time += delta
-	print(survive_time) 
+	print(survive_time)
+	if current_element != "none":
+
+		element_timer -= delta
+
+		if element_timer <= 0:
+
+			current_element = "none"
+
+	# ====================
+	# Elemental timer
 	# =====================
 	# PAUSE
 	# =====================
@@ -111,39 +171,39 @@ func _physics_process(delta):
 	# =====================
 	# WEAPON SWITCHING
 	# =====================
+func update_weapon():
 
-	if Input.is_action_just_pressed("weapon_1"):
+	glock.visible = false
+	shotgun.visible = false
+	machinegun.visible = false
 
-		current_weapon = "glock"
 
-		update_weapon()
+	match current_weapon:
 
-	if Input.is_action_just_pressed("weapon_2"):
+		"glock":
+			glock.visible = true
+			fire_rate = 0.6
+			bullet_damage = 4
 
-		current_weapon = "rifle"
 
-		update_weapon()
+		"shotgun":
+			shotgun.visible = true
+			fire_rate = 0.9
+			bullet_damage = 5
 
-	if Input.is_action_just_pressed("weapon_3"):
 
-		current_weapon = "machine"
-
-		update_weapon()
-
-	if Input.is_action_just_pressed("weapon_4"):
-
-		current_weapon = "shotgun"
-
-		update_weapon()
+		"machine":
+			machinegun.visible = true
+			fire_rate = 0.1
+			bullet_damage = 3
 
 	# =====================
 	# ROUND TIMER
 	# =====================
 
-	survive_time += delta
 
 	if survive_time >= 300:
-
+		
 		current_round += 1
 
 		survive_time = 0
@@ -154,7 +214,7 @@ func _physics_process(delta):
 	# ENEMY SPAWNING
 	# =====================
 
-	enemy_spawn_timer += delta
+
 
 	var spawn_delay = max(0.3, 2.0 - current_round * 0.15)
 
@@ -177,18 +237,6 @@ func _physics_process(delta):
 			orb_spawned_this_round = true
 
 	# =====================
-	# ELEMENT TIMER
-	# =====================
-
-	if current_element != "none":
-
-		element_timer -= delta
-
-		if element_timer <= 0:
-
-			current_element = "none"
-
-	# =====================
 	# UI
 	# =====================
 
@@ -200,7 +248,7 @@ func _physics_process(delta):
 # =========================
 
 func shoot():
-
+	recoil()
 	# SHOTGUN
 
 	if current_weapon == "shotgun":
@@ -211,7 +259,7 @@ func shoot():
 
 			get_parent().add_child(bullet)
 
-			bullet.global_position = global_position
+			bullet.global_position = glock.global_position
 
 			var spread = randf_range(-0.2, 0.2)
 
@@ -237,7 +285,8 @@ func shoot():
 
 		get_parent().add_child(bullet)
 
-		bullet.global_position = global_position
+		bullet.global_position = current_gun.global_position
+	
 
 		bullet.direction = (
 			get_global_mouse_position()
@@ -254,20 +303,6 @@ func shoot():
 # =========================
 # WEAPON STATS
 # =========================
-
-func update_weapon():
-
-	match current_weapon:
-
-		"glock":
-			fire_rate = 0.4
-			bullet_damage = 2
-		"machine":
-			fire_rate = 0.08
-			bullet_damage = 1
-		"shotgun":
-			fire_rate = 0.8
-			bullet_damage = 4
 
 # =========================
 # ENEMY SPAWNING

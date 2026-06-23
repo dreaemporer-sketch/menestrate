@@ -26,7 +26,7 @@ func _process(_delta):
 	continue_label.text = "Continues: " + str(player.continues_left)
 
 func _read():
-	panel.visible=false
+	panel.visible = false
 func _on_button_pressed():
 	panel.visible = !panel.visible
 	
