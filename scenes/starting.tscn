@@ -10,27 +10,34 @@ anchors_preset = 0
 script = ExtResource("1_yq57p")
 
 [node name="683c9Ad70b7e19001d962865" type="Sprite2D" parent="." unique_id=1831518166]
-position = Vector2(824, 320)
+position = Vector2(5.0000005, 9.536743e-07)
 scale = Vector2(2.4853516, 1.7548829)
 texture = ExtResource("1_osrhh")
 
 [node name="Button" type="Button" parent="." unique_id=818153458]
 layout_mode = 0
-offset_left = 360.0
-offset_top = 209.0
-offset_right = 728.0
-offset_bottom = 577.0
+offset_left = 397.0
+offset_top = 195.0
+offset_right = 765.0
+offset_bottom = 563.0
 icon = ExtResource("2_hc2nf")
+flat = true
 
 [node name="Label" type="Label" parent="." unique_id=748983884]
-layout_mode = 0
+layout_direction = 4
+layout_mode = 1
 offset_left = 374.0
 offset_top = 93.0
-offset_right = 669.0
+offset_right = 732.0
 offset_bottom = 276.0
 theme_override_font_sizes/font_size = 65
 text = "Welcome
 "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 2
+uppercase = true
 max_lines_visible = 6
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,4 +1,3 @@
-
 extends Area2D
 
 @export var speed = 800
@@ -10,9 +9,6 @@ var element = "none"
 
 func _ready():
 
-	body_entered.connect(
-		_on_body_entered
-	)
 
 	await get_tree().create_timer(3.0).timeout
 

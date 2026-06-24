@@ -8,3 +8,6 @@ func _ready():
 	resistance = "earth"
 	enemy_type = "earth"
 	super._ready()
+#==========
+#Dimming
+#==========

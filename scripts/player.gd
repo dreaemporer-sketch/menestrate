@@ -111,6 +111,17 @@ func _physics_process(delta):
 	enemy_spawn_timer += delta
 	survive_time += delta
 	print(survive_time)
+	if survive_time >= 60:
+		current_round += 1
+		survive_time = 0
+		orb_spawned_this_round=false
+		boss_spawned = false
+	var spawn_delay = max(0.3, 2.0 - current_round * 0.15)
+	if enemy_spawn_timer >= spawn_delay:
+		spawn_enemy()
+
+		enemy_spawn_timer = 0
+	
 	if current_element != "none":
 
 		element_timer -= delta
@@ -118,14 +129,17 @@ func _physics_process(delta):
 		if element_timer <= 0:
 
 			current_element = "none"
-
+	if current_round in [5, 10, 15, 20, 25]:
+		if boss_spawned == false:
+			spawn_boss()
+			boss_spawned = true
 	# ====================
 	# Elemental timer
 	# =====================
 	# PAUSE
 	# =====================
 
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause and play"):
 
 		paused_game = !paused_game
 
@@ -201,28 +215,10 @@ func update_weapon():
 	# ROUND TIMER
 	# =====================
 
-
-	if survive_time >= 300:
-		
-		current_round += 1
-
-		survive_time = 0
-
-		orb_spawned_this_round = false
-
 	# =====================
 	# ENEMY SPAWNING
 	# =====================
 
-
-
-	var spawn_delay = max(0.3, 2.0 - current_round * 0.15)
-
-	if enemy_spawn_timer >= spawn_delay:
-
-		spawn_enemy()
-
-		enemy_spawn_timer = 0
 
 	# =====================
 	# ORB SPAWNING
@@ -320,21 +316,16 @@ func spawn_enemy():
 	if current_round >= 3:
 		enemies.append(tank_enemy_scene)
 
-	if current_round >= 4:
+	if lightning_unlocked:
 		enemies.append(lightning_enemy_scene)
-
-	if current_round >= 5:
+	if water_unlocked:
 		enemies.append(wind_enemy_scene)
-
-	if current_round >= 6:
+	if water_unlocked:
 		enemies.append(water_enemy_scene)
-
-	if current_round >= 7:
+	if fire_unlocked:
 		enemies.append(fire_enemy_scene)
-
-	if current_round >= 8:
+	if earth_unlocked:
 		enemies.append(earth_enemy_scene)
-
 	var enemy = enemies.pick_random().instantiate()
 
 	enemy.health += current_round - 1
