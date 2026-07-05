@@ -12,7 +12,6 @@ extends CanvasLayer
 @export var kills_label: Label
 
 func _process(_delta):
-
 	if player == null:
 		return
 
@@ -25,7 +24,7 @@ func _process(_delta):
 	kills_label.text = "Kills: " + str(player.kills)
 	continue_label.text = "Continues: " + str(player.continues_left)
 
-func _read():
+func _ready():
 	panel.visible = false
 func _on_button_pressed():
 	panel.visible = !panel.visible

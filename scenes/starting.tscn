@@ -3,8 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://cu10h03td0xm1" path="res://img/683c9ad70b7e19001d962865.jpg" id="1_osrhh"]
 [ext_resource type="Script" uid="uid://j7mg4q332deu" path="res://scripts/start.gd" id="1_yq57p"]
 [ext_resource type="Texture2D" uid="uid://b0keaa8dfpig1" path="res://img/play.png" id="2_hc2nf"]
+[ext_resource type="Texture2D" uid="uid://dww5kaoycqgo5" path="res://img/images.png" id="4_oud6e"]
+[ext_resource type="Script" uid="uid://h76f37q18tqg" path="res://scripts/menusetting.gd" id="5_0cxnw"]
 
 [node name="Starting" type="Control" unique_id=543930784]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_yq57p")
@@ -16,10 +19,10 @@ texture = ExtResource("1_osrhh")
 
 [node name="Button" type="Button" parent="." unique_id=818153458]
 layout_mode = 0
-offset_left = 397.0
-offset_top = 195.0
-offset_right = 765.0
-offset_bottom = 563.0
+offset_left = 154.0
+offset_top = 204.0
+offset_right = 522.0
+offset_bottom = 572.0
 icon = ExtResource("2_hc2nf")
 flat = true
 
@@ -39,5 +42,14 @@ autowrap_mode = 3
 text_overrun_behavior = 2
 uppercase = true
 max_lines_visible = 6
+
+[node name="Button2" type="Button" parent="." unique_id=837084580]
+layout_mode = 0
+offset_left = 682.0
+offset_top = 164.0
+offset_right = 1137.0
+offset_bottom = 619.0
+icon = ExtResource("4_oud6e")
+script = ExtResource("5_0cxnw")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

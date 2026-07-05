@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://btordufl0valn"]
+
+[ext_resource type="Texture2D" uid="uid://cu10h03td0xm1" path="res://img/683c9ad70b7e19001d962865.jpg" id="1_5p8wc"]
+
+[node name="Settings" type="Node2D" unique_id=603256362]
+
+[node name="683c9Ad70b7e19001d962865" type="Sprite2D" parent="." unique_id=1845342237]
+position = Vector2(620, 355)
+scale = Vector2(1.2617188, 1.0019531)
+texture = ExtResource("1_5p8wc")
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1647113342]
+offset_left = -7.0
+offset_top = 8.0
+offset_right = 1043.0
+offset_bottom = 633.0
+text = "To move you have to you WASD
+space or clicking is for shooting (can hold space or holding the click to shoot continuosly
+R for restart
+p is to pause
+o is to play"

@@ -15,6 +15,8 @@ var bullet_damage = 1
 @export var earth_enemy_scene: PackedScene
 @export var lightning_enemy_scene: PackedScene
 @export var wind_enemy_scene: PackedScene
+#shift lock
+var shift_locked = false
 
 # ORB
 @export var orb_scene: PackedScene
@@ -89,6 +91,7 @@ var enemy_spawn_timer = 0.0
 var orb_spawned_this_round = false
 # PAUSE
 var paused_game = false
+var play_game =false
 #guns
 @export var glock:Sprite2D
 @export var shotgun:Sprite2D
@@ -139,21 +142,15 @@ func _physics_process(delta):
 	# PAUSE
 	# =====================
 
-	if Input.is_action_just_pressed("pause and play"):
-
-		paused_game = !paused_game
-
-		get_tree().paused = paused_game
-
 	# =====================
 	# MOVEMENT
 	# =====================
 
 	var direction = Input.get_vector(
-		"ui_left",
-		"ui_right",
-		"ui_up",
-		"ui_down"
+		"move_left",
+		"move_right", 
+		"move_up",
+		"move_down"
 	)
 
 	velocity = direction * speed
@@ -490,3 +487,14 @@ func recoil():
 
 		tween.tween_property(machinegun, "position", Vector2(-8, 0), 0.05)
 		tween.tween_property(machinegun, "position", Vector2(0, 0), 0.08)
+
+	# =====================
+	# SHIFT LOCK TOGGLE
+	# =====================
+	if Input.is_action_just_pressed("shift lock"):
+		if shift_locked == false:
+			shift_locked = true
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
+		else:
+			shift_locked = false
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

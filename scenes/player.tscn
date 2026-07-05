@@ -74,3 +74,5 @@ curve = SubResource("Curve2D_f1ej7")
 curve = SubResource("Curve2D_oprun")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="orbspawn" unique_id=763671669]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=93362536]
