@@ -86,7 +86,7 @@ var element_duration = 120.0
 # ROUND SYSTEM
 var survive_time = 0.0
 var current_round = 1
-# SPAWN TIMERS
+# SPAWN TIMERSm
 var enemy_spawn_timer = 0.0
 var orb_spawned_this_round = false
 # PAUSE

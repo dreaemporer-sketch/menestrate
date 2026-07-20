@@ -7,28 +7,99 @@
 
 [sub_resource type="Curve2D" id="Curve2D_iywne"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1162, 649, 0, 0, 0, 0, 1154, 1, 0, 0, 0, 0, 5, -3, 0, 0, 0, 0, 3, 642, 0, 0, 0, 0, 1165, 646)
+"points": PackedVector2Array(0, 0, 0, 0, 6856, 2919, 0, 0, 0, 0, 6848, -2129, 0, 0, 0, 0, -2923, -2112, 0, 0, 0, 0, -2941, 2896, 0, 0, 0, 0, 6860, 2901)
 }
 point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_lbhrr"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1154, -1, 0, 0, 0, 0, 1156, 3, 0, 0, 0, 0, 1162, 657, 0, 0, 0, 0, 7, 640, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1156, 6, 0, 0, 0, 0, 1154, -1)
+"points": PackedVector2Array(0, 0, 0, 0, 6885, -2158, 0, 0, 0, 0, 6832, 2885, 0, 0, 0, 0, -2974, 2833, 0, 0, 0, 0, -2974, -2141, 0, 0, 0, 0, 6867, -2123)
 }
-point_count = 7
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p57ef"]
+size = Vector2(321, 5806.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
-size = Vector2(30, 760)
+size = Vector2(304.1875, 5806.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iywne"]
-size = Vector2(1262, 35.5)
+size = Vector2(10576.5, 417.875)
 
 [node name="Game" type="Node2D" unique_id=1573141406]
 
-[node name="background" type="Sprite2D" parent="." unique_id=1971262753]
+[node name="backgrounds" type="Sprite2D" parent="." unique_id=1424140927]
+
+[node name="background" type="Sprite2D" parent="backgrounds" unique_id=1971262753]
 z_index = -3
 position = Vector2(128.00006, 409.99985)
 scale = Vector2(2.2402346, 1.9824219)
+texture = ExtResource("1_yqjtg")
+
+[node name="background2" type="Sprite2D" parent="backgrounds" unique_id=1154831467]
+z_index = -3
+position = Vector2(2728, 275.00006)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background10" type="Sprite2D" parent="backgrounds" unique_id=2045244138]
+z_index = -3
+position = Vector2(5719, -1542.9998)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background11" type="Sprite2D" parent="backgrounds" unique_id=306178715]
+z_index = -3
+position = Vector2(5727.0005, 2168.9998)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background12" type="Sprite2D" parent="backgrounds" unique_id=743491298]
+z_index = -3
+position = Vector2(5717, 310.00037)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background3" type="Sprite2D" parent="backgrounds" unique_id=455252109]
+z_index = -3
+position = Vector2(507, -1548.9999)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background4" type="Sprite2D" parent="backgrounds" unique_id=582919014]
+z_index = -3
+position = Vector2(3153.0005, -1548.0001)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background5" type="Sprite2D" parent="backgrounds" unique_id=700217320]
+z_index = -3
+position = Vector2(-1768, -1548)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background6" type="Sprite2D" parent="backgrounds" unique_id=1883861825]
+z_index = -3
+position = Vector2(-1769.0001, 285.99976)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background7" type="Sprite2D" parent="backgrounds" unique_id=276795216]
+z_index = -3
+position = Vector2(-1754.9996, 2169)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background8" type="Sprite2D" parent="backgrounds" unique_id=297282024]
+z_index = -3
+position = Vector2(1081.9999, 2169.0002)
+scale = Vector2(3.0148358, 1.988541)
+texture = ExtResource("1_yqjtg")
+
+[node name="background9" type="Sprite2D" parent="backgrounds" unique_id=1333765246]
+z_index = -3
+position = Vector2(3787, 2181.0002)
+scale = Vector2(3.0148358, 1.988541)
 texture = ExtResource("1_yqjtg")
 
 [node name="Player" parent="." unique_id=862858166 node_paths=PackedStringArray("enemy_spawn") instance=ExtResource("1_uwrxv")]
@@ -42,101 +113,32 @@ position = Vector2(985.01526, -382.8079)
 curve = SubResource("Curve2D_iywne")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="enemypath" unique_id=1864487291]
-position = Vector2(1162, 649)
-rotation = -1.5831413
+position = Vector2(6856, 2919)
+rotation = -1.5723811
 
 [node name="orbpath" type="Path2D" parent="." unique_id=1285190804]
 curve = SubResource("Curve2D_lbhrr")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="orbpath" unique_id=1180163993]
-position = Vector2(1154, -1)
-rotation = 1.1071488
+position = Vector2(6885, -2158)
+rotation = 1.5813055
 
 [node name="PauseManager" parent="." unique_id=272263400 instance=ExtResource("4_lbhrr")]
 
-[node name="screenboundaries" type="StaticBody2D" parent="." unique_id=1689406859]
-visible = false
-disable_mode = 2
-collision_layer = 0
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=974349873]
 
-[node name="leftwall" type="CollisionShape2D" parent="screenboundaries" unique_id=1598543762]
-position = Vector2(-13, 318)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=781002273]
+position = Vector2(7026.5, 397)
+shape = SubResource("RectangleShape2D_p57ef")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=652491591]
+position = Vector2(-3110.0938, 433)
 shape = SubResource("RectangleShape2D_lbhrr")
 
-[node name="rightwall" type="CollisionShape2D" parent="screenboundaries" unique_id=1737607425]
-position = Vector2(1172, 329)
-shape = SubResource("RectangleShape2D_lbhrr")
-
-[node name="upwall" type="CollisionShape2D" parent="screenboundaries" unique_id=2013490475]
-position = Vector2(577, -23)
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=148888659]
+position = Vector2(1964.25, 3098.125)
 shape = SubResource("RectangleShape2D_iywne")
 
-[node name="downwall" type="CollisionShape2D" parent="screenboundaries" unique_id=482379513]
-position = Vector2(585, 664)
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1351481026]
+position = Vector2(1994, -2389.9375)
 shape = SubResource("RectangleShape2D_iywne")
-
-[node name="background2" type="Sprite2D" parent="." unique_id=1154831467]
-z_index = -3
-position = Vector2(2728, 275.00006)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background10" type="Sprite2D" parent="." unique_id=2045244138]
-z_index = -3
-position = Vector2(5719, -1542.9998)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background11" type="Sprite2D" parent="." unique_id=306178715]
-z_index = -3
-position = Vector2(5727.0005, 2168.9998)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background12" type="Sprite2D" parent="." unique_id=743491298]
-z_index = -3
-position = Vector2(5717, 310.00037)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background3" type="Sprite2D" parent="." unique_id=455252109]
-z_index = -3
-position = Vector2(507, -1548.9999)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background4" type="Sprite2D" parent="." unique_id=582919014]
-z_index = -3
-position = Vector2(3153.0005, -1548.0001)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background5" type="Sprite2D" parent="." unique_id=700217320]
-z_index = -3
-position = Vector2(-1768, -1548)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background6" type="Sprite2D" parent="." unique_id=1883861825]
-z_index = -3
-position = Vector2(-1769.0001, 285.99976)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background7" type="Sprite2D" parent="." unique_id=276795216]
-z_index = -3
-position = Vector2(-1754.9996, 2169)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background8" type="Sprite2D" parent="." unique_id=297282024]
-z_index = -3
-position = Vector2(1081.9999, 2169.0002)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")
-
-[node name="background9" type="Sprite2D" parent="." unique_id=1333765246]
-z_index = -3
-position = Vector2(3787, 2181.0002)
-scale = Vector2(3.0148358, 1.988541)
-texture = ExtResource("1_yqjtg")

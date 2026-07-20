@@ -33,10 +33,10 @@ offset_bottom = 105.0
 text = "element:"
 
 [node name="round_label" type="Label" parent="." unique_id=1324131143]
-offset_left = 49.0
-offset_top = 83.0
-offset_right = 96.0
-offset_bottom = 132.0
+offset_left = -2.0
+offset_top = 169.0
+offset_right = 45.0
+offset_bottom = 218.0
 text = "round
 "
 
