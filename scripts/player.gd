@@ -84,7 +84,9 @@ var current_element = "none"
 var element_timer = 0.0
 var element_duration = 120.0
 # ROUND SYSTEM
-var survive_time = 0.0
+var enemies_to_kill = 5
+var enemies_killed_this_round = 0
+var enemies_spawned_this_round = 0
 var current_round = 1
 # SPAWN TIMERSm
 var enemy_spawn_timer = 0.0
@@ -96,6 +98,7 @@ var play_game =false
 @export var glock:Sprite2D
 @export var shotgun:Sprite2D
 @export var machinegun:Sprite2D
+
 var current_gun
 
 func _ready():
@@ -112,18 +115,15 @@ func _ready():
 	
 func _physics_process(delta):
 	enemy_spawn_timer += delta
-	survive_time += delta
-	print(survive_time)
-	if survive_time >= 60:
-		current_round += 1
-		survive_time = 0
-		orb_spawned_this_round=false
-		boss_spawned = false
-	var spawn_delay = max(0.3, 2.0 - current_round * 0.15)
-	if enemy_spawn_timer >= spawn_delay:
-		spawn_enemy()
+	var spawn_delay = 1.0
+	if enemies_spawned_this_round < enemies_to_kill:
+		if enemy_spawn_timer >= spawn_delay:
 
-		enemy_spawn_timer = 0
+			spawn_enemy()
+
+			enemies_spawned_this_round += 1
+
+			enemy_spawn_timer = 0
 	
 	if current_element != "none":
 
@@ -498,3 +498,12 @@ func recoil():
 		else:
 			shift_locked = false
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+func enemy_killed():
+	enemies_killed_this_round += 1
+	if enemies_killed_this_round>=enemies_to_kill:
+		current_round+=1
+		enemies_to_kill+=5
+		enemies_killed_this_round=0
+		enemies_spawned_this_round = 0
+		orb_spawned_this_round = false
+		boss_spawned = false

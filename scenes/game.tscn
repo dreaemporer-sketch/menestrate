@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cu10h03td0xm1" path="res://img/683c9ad70b7e19001d962865.jpg" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://g8ddcjs8g7t5" path="res://scenes/bullet1.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cuf36f17dmhop" path="res://scenes/pause_manager.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://df5l34mwwyv20" path="res://scenes/hud.tscn" id="5_iywne"]
 
 [sub_resource type="Curve2D" id="Curve2D_iywne"]
 _data = {
@@ -142,3 +143,6 @@ shape = SubResource("RectangleShape2D_iywne")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1351481026]
 position = Vector2(1994, -2389.9375)
 shape = SubResource("RectangleShape2D_iywne")
+
+[node name="Hud" parent="." unique_id=1767084392 node_paths=PackedStringArray("player") instance=ExtResource("5_iywne")]
+player = NodePath("../Player")

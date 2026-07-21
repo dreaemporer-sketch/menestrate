@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b8s5px61qpmw7" path="res://scripts/hud.gd" id="1_ahhtf"]
 
-[node name="Hud" type="CanvasLayer" unique_id=1767084392 node_paths=PackedStringArray("player", "time_label", "weapon_label", "element_label", "round_label", "health_label", "continue_label", "stamina_label", "kills_label")]
+[node name="Hud" type="CanvasLayer" unique_id=1767084392 node_paths=PackedStringArray("player", "panel", "time_label", "weapon_label", "element_label", "round_label", "health_label", "continue_label", "stamina_label", "kills_label")]
 script = ExtResource("1_ahhtf")
 player = NodePath("player")
+panel = NodePath("Button")
 time_label = NodePath("time_label")
 weapon_label = NodePath("weapon_label")
 element_label = NodePath("element_label")

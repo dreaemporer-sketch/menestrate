@@ -15,7 +15,7 @@ func _process(_delta):
 	if player == null:
 		return
 
-	time_label.text = "Time: " + str(int(player.survive_time))
+	time_label.text = "needed kills: " + str(player.enemies_killed_this_round) + "/" + str(player.enemies_to_kill)
 	weapon_label.text = "Weapon: " + player.current_weapon
 	element_label.text = "Element: " + player.current_element
 	round_label.text = "Round: " + str(player.current_round)
