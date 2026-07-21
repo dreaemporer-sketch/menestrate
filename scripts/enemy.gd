@@ -24,7 +24,7 @@ func _physics_process(delta):
 	if player_in_range:
 		damage_timer-=delta
 		if damage_timer <=0:
-			player.take_damage()
+			player.take_damage(damage)
 			damage_timer=3
 		
 func take_damage(amount, element = "none"):
@@ -65,10 +65,7 @@ func _on_area_2d_body_entered(body):
 		
 func update_health_visuals():
 	health_pct = health / max_health
-	if has_node("Sprite2D"):
-		$Sprite2D.modulate = Color(1.0, health_pct, health_pct, 1.0)
-	else:
-		push_error(name + " does NOT have a direct child called Sprite2D")
+	$sprite2d.modulate = Color(1.0, health_pct, health_pct, 1.0)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:

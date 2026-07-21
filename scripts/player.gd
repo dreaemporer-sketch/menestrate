@@ -40,31 +40,23 @@ var earth_unlocked = false
 @export var lightning_boss_scene: PackedScene
 @export var earth_boss_scene: PackedScene
 func spawn_boss():
-
 	var boss
-
 	match current_round:
 
 		5:
 			boss = fire_boss_scene.instantiate()
-
 		10:
 			boss = wind_boss_scene.instantiate()
-
 		15:
 			boss = water_boss_scene.instantiate()
-
 		20:
 			boss = lightning_boss_scene.instantiate()
-
 		25:
 			boss = earth_boss_scene.instantiate()
-
 	if boss == null:
 		return
 
 	enemy_spawn.progress_ratio = randf()
-
 	boss.global_position = enemy_spawn.global_position
 
 	get_parent().add_child(boss)
