@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c617atcg8qwcm"]
+
+[ext_resource type="Script" uid="uid://b4wtkan0u4yhg" path="res://scripts/admin_console.gd" id="1_cownk"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1911997941 node_paths=PackedStringArray("player", "panel", "line_edit")]
+script = ExtResource("1_cownk")
+player = NodePath("")
+panel = NodePath("Panel")
+line_edit = NodePath("Panel/LineEdit")
+
+[node name="Panel" type="Panel" parent="." unique_id=1118229513]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LineEdit" type="LineEdit" parent="Panel" unique_id=331723055]
+layout_mode = 0
+offset_right = 68.5
+offset_bottom = 31.0
+
+[connection signal="text_submitted" from="Panel/LineEdit" to="." method="_on_line_edit_text_submitted"]

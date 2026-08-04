@@ -369,16 +369,15 @@ func take_damage(amount):
 # =========================
 
 func die():
+	if continues_left <= 0:
+		return
+		continues_left -= 1
 
-	continues_left -= 1
-
-	if continues_left > 0:
-
-		continue_game()
-
-	else:
-
-		game_over()
+		if continues_left > 0:
+			health = 100
+			continue_game()
+		else:
+			game_over()
 
 
 # =========================
@@ -387,14 +386,9 @@ func die():
 
 func continue_game():
 
-	health = 40
-
-	stamina = 40
-
+	stamina = 100
 	speed -= 10
-
 	fire_rate += 0.05
-
 	global_position = Vector2.ZERO
 
 

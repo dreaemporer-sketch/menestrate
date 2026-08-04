@@ -21,18 +21,18 @@ func _physics_process(delta):
 		velocity = direction * speed
 		move_and_slide()
 
-	if player_in_range:
-		damage_timer-=delta
-		if damage_timer <=0:
+	if player_in_range and player != null:
+		damage_timer -= delta
+		if damage_timer <= 0:
 			player.take_damage(damage)
-			damage_timer=3
+			damage_timer = 3.0 
 		
 func take_damage(amount, element = "none"):
 	if element == resistance:
-		amount *= 0.3 # resistant
+		amount *= 0.3
 
 	elif element == "water" and resistance == "fire":
-		amount *= 2 # weakness
+		amount *= 2 
 
 	elif element == "fire" and resistance == "earth":
 		amount *= 2
@@ -56,12 +56,12 @@ func take_damage(amount, element = "none"):
 		queue_free()
 
 func _on_area_2d_body_entered(body):
-
 	if body.is_in_group("player"):
-		player_in_range=true
-		player=body
-		body.take_damage(damage)
-		damage_timer=3.0
+		if not player_in_range:
+			player_in_range = true
+			player = body
+			body.take_damage(damage)
+			damage_timer = 3.0
 		
 func update_health_visuals():
 	health_pct = health / max_health
@@ -70,4 +70,5 @@ func update_health_visuals():
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		player_in_range=false
+		player_in_range = false
+		damage_timer = 0.0 # Clear the timer when they leave
