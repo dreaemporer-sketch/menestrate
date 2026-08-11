@@ -6,7 +6,7 @@ extends CharacterBody2D
 var health_pct: float = 1.0
 @export var damage = 10
 var player
-var resistance = "none"
+var resistance = Constant.ELEMENT_NONE
 var player_in_range = false
 var damage_timer = 0.0
 
@@ -27,7 +27,7 @@ func _physics_process(delta):
 			player.take_damage(damage)
 			damage_timer = 3.0 
 		
-func take_damage(amount, element = "none"):
+func take_damage(amount, element = Constant.ELEMENT_NONE):
 	if element == resistance:
 		amount *= 0.3
 
@@ -56,12 +56,12 @@ func take_damage(amount, element = "none"):
 		queue_free()
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("player"):
+	if body.is_in_group(Constant.PLAYER_GROUP):
 		if not player_in_range:
 			player_in_range = true
 			player = body
 			body.take_damage(damage)
-			damage_timer = 3.0
+			damage_timer = Constant.DAMAGE_INTERVAL
 		
 func update_health_visuals():
 	health_pct = health / max_health

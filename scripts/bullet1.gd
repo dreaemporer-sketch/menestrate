@@ -4,13 +4,13 @@ extends Area2D
 
 var direction = Vector2.ZERO
 var damage = 1
-var element = "none"
+var element = Constant.ELEMENT_NONE
 
 
 func _ready():
 
 
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(Constant.BULLET_LIFETIME).timeout
 
 	queue_free()
 

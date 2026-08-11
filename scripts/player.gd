@@ -62,17 +62,16 @@ func spawn_boss():
 	get_parent().add_child(boss)
 
 # PLAYER STATS
-var health = 100
-var stamina = 100
-
-var continues_left = 10
+var health = Constant.STARTING_HEALTH
+var stamina = Constant.STARTING_STAMINA
+var continues_left = Constant.STARTING_CONTINUES
 var kills = 0
 # WEAPON
-var current_weapon = "glock"
+var current_weapon = Constant.WEAPON_GLOCK
 var fire_rate = 0.4
 var shoot_timer = 0.0
 # ELEMENT
-var current_element = "none"
+var current_element = Constant.ELEMENT_NONE
 var element_timer = 0.0
 var element_duration = 120.0
 # ROUND SYSTEM
@@ -360,7 +359,7 @@ func take_damage(amount):
 	health -= amount
 
 	if health <= 0:
-
+		health = 0
 		die()
 
 
@@ -369,24 +368,21 @@ func take_damage(amount):
 # =========================
 
 func die():
-	if continues_left <= 0:
-		return
+	print("Continues before:", continues_left)
+	if continues_left > 0:
 		continues_left -= 1
-
-		if continues_left > 0:
-			health = 100
-			continue_game()
-		else:
-			game_over()
-
+	if continues_left > 0:
+		continue_game()
+	else:
+		game_over()
 
 # =========================
 # CONTINUE
 # =========================
 
 func continue_game():
-
-	stamina = 100
+	health=Constant.STARTING_HEALTH
+	stamina = Constant.STARTING_STAMINA
 	speed -= 10
 	fire_rate += 0.05
 	global_position = Vector2.ZERO

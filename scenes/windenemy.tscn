@@ -4,28 +4,28 @@
 [ext_resource type="Script" uid="uid://6kgtkalob05e" path="res://scripts/windenemy.gd" id="2_s6nhb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6nhb"]
-size = Vector2(19, 19)
+size = Vector2(36, 34.000004)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7iw6n"]
-size = Vector2(19, 19)
+size = Vector2(37, 35)
 
 [node name="character" type="CharacterBody2D" unique_id=464547384]
 script = ExtResource("2_s6nhb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=736288670]
-position = Vector2(-0.5, -0.49999952)
+position = Vector2(1, -2.3841858e-07)
 scale = Vector2(1, 0.99999994)
 shape = SubResource("RectangleShape2D_s6nhb")
 
 [node name="sprite2d" type="Sprite2D" parent="." unique_id=1442667722]
-position = Vector2(0, 5.684342e-14)
-scale = Vector2(0.101, 0.098)
+position = Vector2(0.9999988, 1.500001)
+scale = Vector2(0.19444445, 0.18454938)
 texture = ExtResource("1_wu4bi")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2047497917]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1391780406]
-position = Vector2(-0.5, -0.5)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_7iw6n")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

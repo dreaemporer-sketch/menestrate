@@ -2,14 +2,14 @@
 extends Area2D
 
 var elements = [
-	"fire",
-	"water",
-	"earth",
-	"lightning",
-	"wind"
+	Constant.ELEMENT_FIRE,
+	Constant.ELEMENT_WATER,
+	Constant.ELEMENT_EARTH,
+	Constant.ELEMENT_LIGHTNING,
+	Constant.ELEMENT_WIND
 ]
 
-var selected_element = "fire"
+var selected_element = Constant.ELEMENT_FIRE
 
 
 func _ready():
