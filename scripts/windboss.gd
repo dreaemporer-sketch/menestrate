@@ -4,7 +4,7 @@ func _ready():
 	speed = 70
 	health = 120
 	damage = 20
-	resistance = "wind"
+	resistance = Constant.ELEMENT_WIND
 
 	super._ready()
 

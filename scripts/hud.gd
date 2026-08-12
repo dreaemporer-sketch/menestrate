@@ -10,8 +10,12 @@ extends CanvasLayer
 @export var continue_label: Label
 @export var stamina_label: Label
 @export var kills_label: Label
+@export var element_timer_label: Label
 
 func _process(_delta):
+	if player.current_element != Constant.ELEMENT_NONE:
+		element_timer_label.visible=true
+		element_timer_label.text = player.current_element + "+"
 	if player == null:
 		return
 

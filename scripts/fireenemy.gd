@@ -1,11 +1,11 @@
 extends "res://scripts/enemy.gd"
-var enemy_type = "fire"
+var enemy_type =  Constant.ELEMENT_FIRE
 func _ready():
 
 	speed = 100
 	health = 6
 
-	resistance = "fire"
-	enemy_type = "fire"
+	resistance = Constant.ELEMENT_FIRE
+	enemy_type = Constant.ELEMENT_FIRE
 
 	super._ready()

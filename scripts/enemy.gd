@@ -31,19 +31,19 @@ func take_damage(amount, element = Constant.ELEMENT_NONE):
 	if element == resistance:
 		amount *= 0.3
 
-	elif element == "water" and resistance == "fire":
+	elif element == Constant.ELEMENT_WATER and resistance == Constant.ELEMENT_FIRE:
 		amount *= 2 
 
-	elif element == "fire" and resistance == "earth":
+	elif element == Constant.ELEMENT_FIRE and resistance == Constant.ELEMENT_EARTH:
 		amount *= 2
 
-	elif element == "earth" and resistance == "lightning":
+	elif element == Constant.ELEMENT_EARTH and resistance ==Constant.ELEMENT_LIGHTNING:
 		amount *= 2
 
-	elif element == "lightning" and resistance == "water":
+	elif element == Constant.ELEMENT_LIGHTNING and resistance == Constant.ELEMENT_WATER:
 		amount *= 2
 
-	elif element == "wind" and resistance == "earth":
+	elif element == Constant.ELEMENT_WIND and resistance == Constant.ELEMENT_EARTH:
 		amount *= 2
 	health -= amount
 	update_health_visuals()

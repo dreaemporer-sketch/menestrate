@@ -4,7 +4,7 @@ func _ready():
 	speed = 50
 	health = 100
 	damage = 20
-	resistance = "fire"
+	resistance = Constant.ELEMENT_FIRE
 
 	super._ready()
 

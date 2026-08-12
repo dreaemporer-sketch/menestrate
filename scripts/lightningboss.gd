@@ -4,7 +4,7 @@ func _ready():
 	speed = 100
 	health = 160
 	damage = 30
-	resistance = "lightning"
+	resistance = Constant.ELEMENT_LIGHTNING
 
 	super._ready()
 

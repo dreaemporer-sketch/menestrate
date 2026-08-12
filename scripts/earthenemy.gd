@@ -1,12 +1,12 @@
 extends "res://scripts/enemy.gd"
 
-var enemy_type = "earth"
+var enemy_type =  Constant.ELEMENT_EARTH
 
 func _ready():
 	speed = 220
 	health = 2
-	resistance = "earth"
-	enemy_type = "earth"
+	resistance = Constant.ELEMENT_EARTH
+	enemy_type = Constant.ELEMENT_EARTH
 	super._ready()
 #==========
 #Dimming

@@ -4,7 +4,7 @@ func _ready():
 	speed = 40
 	health = 250
 	damage = 35
-	resistance = "earth"
+	resistance = Constant.ELEMENT_EARTH
 
 	super._ready()
 

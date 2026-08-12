@@ -37,3 +37,19 @@ func _on_body_entered(body):
 		body.take_damage(damage, element)
 
 	queue_free()
+
+func update_bullet_colour():
+	match element:
+		Constant.ELEMENT_FIRE:
+			modulate = Constant.ELEMENT_FIRE_COLOR
+		Constant.ELEMENT_EARTH:
+			modulate = Constant.ELEMENT_EARTH_COLOR
+		Constant. ELEMENT_WATER:
+			modulate = Constant.ELEMENT_WATER_COLOR
+		Constant. ELEMENT_WIND:
+			modulate = Constant.ELEMENT_WIND_COLOR
+		Constant. ELEMENT_LIGHTNING:
+			modulate = Constant.ELEMENT_LIGHTNING_COLOR
+		Constant. ELEMENT_NONE:
+			modulate = Constant.ELEMENT_NONE_COLOR
+	

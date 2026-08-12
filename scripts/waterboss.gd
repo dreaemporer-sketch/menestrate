@@ -4,7 +4,7 @@ func _ready():
 	speed = 60
 	health = 140
 	damage = 25
-	resistance = "water"
+	resistance = Constant.ELEMENT_WATER
 
 	super._ready()
 

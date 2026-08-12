@@ -73,7 +73,16 @@ offset_bottom = 168.0
 text = "player"
 
 [node name="Button" type="Button" parent="." unique_id=703225655]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 34.0
 text = "menu
 "
+
+[node name="element_timer_label" type="Label" parent="." unique_id=346836455]
+offset_left = -1.0
+offset_top = 188.0
+offset_right = 114.0
+offset_bottom = 211.0
+text = "Element timer:"

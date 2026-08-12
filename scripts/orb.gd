@@ -4,7 +4,7 @@ extends Area2D
 var elements = [
 	Constant.ELEMENT_FIRE,
 	Constant.ELEMENT_WATER,
-	Constant.ELEMENT_EARTH,
+	Constant.ELEMENT_EARTH,	
 	Constant.ELEMENT_LIGHTNING,
 	Constant.ELEMENT_WIND
 ]

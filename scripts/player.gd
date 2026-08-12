@@ -127,6 +127,13 @@ func _physics_process(delta):
 		if boss_spawned == false:
 			spawn_boss()
 			boss_spawned = true
+	if current_round % 5 == 0:
+
+		if orb_spawned_this_round == false:
+
+			spawn_orb()
+
+			orb_spawned_this_round = true
 	# ====================
 	# Elemental timer
 	# =====================
@@ -182,43 +189,22 @@ func update_weapon():
 
 	match current_weapon:
 
-		"glock":
+		Constant.WEAPON_GLOCK:
 			glock.visible = true
-			fire_rate = 0.6
-			bullet_damage = 4
+			fire_rate = Constant.GlOCK_FIRE_RATE
+			bullet_damage = Constant.GlOCK_DAMAGE
 
 
-		"shotgun":
+		Constant.WEAPON_SHOTGUN:
 			shotgun.visible = true
-			fire_rate = 0.9
-			bullet_damage = 5
+			fire_rate = Constant.SHOTGUN_FIRE_RATE
+			bullet_damage = Constant.SHOTGUN_DAMAGE
 
 
-		"machine":
+		Constant.WEAPON_MACHINE:
 			machinegun.visible = true
-			fire_rate = 0.1
-			bullet_damage = 3
-
-	# =====================
-	# ROUND TIMER
-	# =====================
-
-	# =====================
-	# ENEMY SPAWNING
-	# =====================
-
-
-	# =====================
-	# ORB SPAWNING
-	# =====================
-
-	if current_round % 5 == 0:
-
-		if orb_spawned_this_round == false:
-
-			spawn_orb()
-
-			orb_spawned_this_round = true
+			fire_rate = Constant.MACHINE_FIRE_RATE
+			bullet_damage = Constant.MACHINE_DAMAGE
 
 	# =====================
 	# UI
@@ -259,7 +245,7 @@ func shoot():
 			bullet.rotation = direction.angle()
 
 			bullet.element = current_element
-
+			bullet.update_bullet_color()
 			bullet.damage = bullet_damage
 
 	# NORMAL GUNS
@@ -455,17 +441,17 @@ func recoil():
 	
 	var tween = get_tree().create_tween()
 
-	if current_weapon == "glock":
+	if current_weapon == Constant.WEAPON_GLOCK:
 
 		tween.tween_property(glock, "position", Vector2(-10, 0), 0.05)
 		tween.tween_property(glock, "position", Vector2(0, 0), 0.08)
 
-	if current_weapon == "shotgun":
+	if current_weapon == Constant.WEAPON_SHOTGUN:
 
 		tween.tween_property(shotgun, "position", Vector2(-15, 0), 0.05)
 		tween.tween_property(shotgun, "position", Vector2(0, 0), 0.08)
 
-	if current_weapon == "machine":
+	if current_weapon == Constant.WEAPON_MACHINE:
 
 		tween.tween_property(machinegun, "position", Vector2(-8, 0), 0.05)
 		tween.tween_property(machinegun, "position", Vector2(0, 0), 0.08)
