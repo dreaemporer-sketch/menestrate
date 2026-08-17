@@ -9,6 +9,10 @@ var player
 var resistance = Constant.ELEMENT_NONE
 var player_in_range = false
 var damage_timer = 0.0
+var burn_timer = 0
+var earth_timer = 0
+var wind_frozen = false
+
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
@@ -16,6 +20,14 @@ func _ready():
 	
 func _physics_process(delta):
 
+	if burn_timer > 0:
+		burn_timer -= delta
+		if burn_timer <= 0 :
+			burn_timer = 0
+	if earth_timer > 0:
+		earth_timer -= delta
+		if earth_timer <= 0:
+			earth_timer - 0
 	if player != null:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
@@ -29,7 +41,7 @@ func _physics_process(delta):
 		
 func take_damage(amount, element = Constant.ELEMENT_NONE):
 	if element == resistance:
-		amount *= 0.3
+		amount *= 0.3asx
 
 	elif element == Constant.ELEMENT_WATER and resistance == Constant.ELEMENT_FIRE:
 		amount *= 2 

@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ruy1ikwckp1g" path="res://img/glock.png" id="9_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://b8bxpffar6f5m" path="res://img/shotgun.png" id="10_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://djwm5w6ws4qak" path="res://img/machinegun.png" id="11_d2wvv"]
+[ext_resource type="Script" uid="uid://xsrt0g1x1c1w" path="res://scripts/orb.gd" id="14_f1ej7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(37, 41)
@@ -33,13 +34,13 @@ earth_enemy_scene = ExtResource("4_d2wvv")
 lightning_enemy_scene = ExtResource("5_3v2ag")
 wind_enemy_scene = ExtResource("6_jej6c")
 orb_scene = ExtResource("7_f1ej7")
-enemy_spawn = NodePath("enemyspawn/PathFollow2D")
-orb_spawn = NodePath("orbspawn/PathFollow2D")
 fire_boss_scene = ExtResource("3_y4r1p")
 wind_boss_scene = ExtResource("6_jej6c")
 water_boss_scene = ExtResource("4_3v2ag")
 lightning_boss_scene = ExtResource("5_3v2ag")
 earth_boss_scene = ExtResource("4_d2wvv")
+enemy_spawn = NodePath("enemyspawn/PathFollow2D")
+orb_spawn = NodePath("orbspawn/PathFollow2D")
 glock = NodePath("glock")
 shotgun = NodePath("shotgun")
 machinegun = NodePath("Machinegun")
@@ -77,6 +78,7 @@ curve = SubResource("Curve2D_f1ej7")
 
 [node name="orbspawn" type="Path2D" parent="." unique_id=2047555878]
 curve = SubResource("Curve2D_oprun")
+script = ExtResource("14_f1ej7")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="orbspawn" unique_id=763671669]
 

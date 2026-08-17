@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 250
+@export var speed = Constant.PLAYER_SPEED
 @export var bullet_scene: PackedScene
 
 # BULLET DAMAGE
@@ -73,9 +73,8 @@ var shoot_timer = 0.0
 # ELEMENT
 var current_element = Constant.ELEMENT_NONE
 var element_timer = 0.0
-var element_duration = 120.0
 # ROUND SYSTEM
-var enemies_to_kill = 5
+var enemies_to_kill = Constant.STARTING_ENEMIES
 var enemies_killed_this_round = 0
 var enemies_spawned_this_round = 0
 var current_round = 1
@@ -106,9 +105,8 @@ func _ready():
 	
 func _physics_process(delta):
 	enemy_spawn_timer += delta
-	var spawn_delay = 1.0
 	if enemies_spawned_this_round < enemies_to_kill:
-		if enemy_spawn_timer >= spawn_delay:
+		if enemy_spawn_timer >= Constant.ENEMY_SPAWN_DELAY:
 
 			spawn_enemy()
 
@@ -123,8 +121,8 @@ func _physics_process(delta):
 		if element_timer <= 0:
 
 			current_element = "none"
-	if current_round in [5, 10, 15, 20, 25]:
-		if boss_spawned == false:
+	if current_round % Constant.BOSS_ROUND_INTERVAL ==0:
+		if not boss_spawned:
 			spawn_boss()
 			boss_spawned = true
 	if current_round % 5 == 0:
@@ -191,8 +189,8 @@ func update_weapon():
 
 		Constant.WEAPON_GLOCK:
 			glock.visible = true
-			fire_rate = Constant.GlOCK_FIRE_RATE
-			bullet_damage = Constant.GlOCK_DAMAGE
+			fire_rate = Constant.GLOCK_FIRE_RATE
+			bullet_damage = Constant.GLOCK_DAMAGE
 
 
 		Constant.WEAPON_SHOTGUN:
@@ -302,7 +300,7 @@ func spawn_enemy():
 		enemies.append(earth_enemy_scene)
 	var enemy = enemies.pick_random().instantiate()
 
-	enemy.health += current_round - 1
+	enemy.health += (current_round - 1) * Constant.ROUND_HEALTH_INCREASE
 
 	enemy_spawn.progress_ratio = randf()
 
@@ -330,10 +328,8 @@ func spawn_orb():
 # =========================
 
 func set_element(element):
-
 	current_element = element
-
-	element_timer = element_duration
+	element_timer = Constant.ELEMENT_DURATION
 
 
 # =========================
@@ -369,7 +365,7 @@ func die():
 func continue_game():
 	health=Constant.STARTING_HEALTH
 	stamina = Constant.STARTING_STAMINA
-	speed -= 10
+	speed -= Constant.CONTINUE_SPEED_LOSS
 	fire_rate += 0.05
 	global_position = Vector2.ZERO
 
@@ -469,9 +465,13 @@ func recoil():
 func enemy_killed():
 	enemies_killed_this_round += 1
 	if enemies_killed_this_round>=enemies_to_kill:
-		current_round+=1
-		enemies_to_kill+=5
-		enemies_killed_this_round=0
-		enemies_spawned_this_round = 0
-		orb_spawned_this_round = false
-		boss_spawned = false
+		start_next_round()
+		
+func start_new_round():
+	current_round +=1
+	enemies_to_kill += Constant.ENEMY_PER_ROUND
+	enemies_killed_this_round =0
+	enemies_spawned_this_round= 0
+	
+	
+	
