@@ -39,7 +39,7 @@ func _on_line_edit_text_submitted(command:String)-> void:
 				player.kills = total_kills
 
 		"health":
-			if parts.size() >= 2:
+			if parts.size() >= 2 and parts[1].is_valid_int():
 				player.health = int(parts[1])
 
 		"kills":

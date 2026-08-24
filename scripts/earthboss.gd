@@ -2,7 +2,7 @@ extends "res://scripts/enemy.gd"
 func _ready():
 
 	speed = 40
-	health = 250
+	health = 140
 	damage = 35
 	resistance = Constant.ELEMENT_EARTH
 

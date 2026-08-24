@@ -41,7 +41,7 @@ func _physics_process(delta):
 		
 func take_damage(amount, element = Constant.ELEMENT_NONE):
 	if element == resistance:
-		amount *= 0.3asx
+		amount *= 0.3
 
 	elif element == Constant.ELEMENT_WATER and resistance == Constant.ELEMENT_FIRE:
 		amount *= 2 

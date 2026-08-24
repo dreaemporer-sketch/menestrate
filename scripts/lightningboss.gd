@@ -1,8 +1,8 @@
 extends "res://scripts/enemy.gd"
 func _ready():
 
-	speed = 100
-	health = 160
+	speed = 200
+	health = 180
 	damage = 30
 	resistance = Constant.ELEMENT_LIGHTNING
 

@@ -40,18 +40,24 @@ var earth_unlocked = false
 @export var lightning_boss_scene: PackedScene
 @export var earth_boss_scene: PackedScene
 func spawn_boss():
+	print("trying to spawn the boss", current_round)
 	var boss
 	match current_round:
 
 		5:
+			print("Fire boss initiated")
 			boss = fire_boss_scene.instantiate()
 		10:
+			print(" wind boss initiated")
 			boss = wind_boss_scene.instantiate()
 		15:
+			print("water boss initiated")
 			boss = water_boss_scene.instantiate()
 		20:
+			print("ligtning boss initiated")
 			boss = lightning_boss_scene.instantiate()
 		25:
+			print("earth boss initiated")
 			boss = earth_boss_scene.instantiate()
 	if boss == null:
 		return
@@ -94,13 +100,10 @@ var current_gun
 func _ready():
 
 	randomize()
-
 	add_to_group("player")
-	
-	update_weapon()
-	
 	load_game()
-
+	check_weapon_unlocks()
+	update_weapon()
 	current_gun = glock
 	
 func _physics_process(delta):
@@ -227,7 +230,7 @@ func shoot():
 
 			get_parent().add_child(bullet)
 
-			bullet.global_position = glock.global_position
+			bullet.global_position = current_gun.global_position
 
 			var spread = randf_range(-0.2, 0.2)
 
@@ -243,7 +246,7 @@ func shoot():
 			bullet.rotation = direction.angle()
 
 			bullet.element = current_element
-			bullet.update_bullet_color()
+			bullet.update_bullet_colour()
 			bullet.damage = bullet_damage
 
 	# NORMAL GUNS
@@ -277,11 +280,9 @@ func shoot():
 # =========================
 
 func spawn_enemy():
-
 	var enemies = [
 		normal_enemy_scene
 	]
-
 	if current_round >= 2:
 		enemies.append(fast_enemy_scene)
 
@@ -290,14 +291,19 @@ func spawn_enemy():
 
 	if lightning_unlocked:
 		enemies.append(lightning_enemy_scene)
+		
 	if water_unlocked:
 		enemies.append(wind_enemy_scene)
+		
 	if water_unlocked:
 		enemies.append(water_enemy_scene)
+		
 	if fire_unlocked:
 		enemies.append(fire_enemy_scene)
+		
 	if earth_unlocked:
 		enemies.append(earth_enemy_scene)
+		
 	var enemy = enemies.pick_random().instantiate()
 
 	enemy.health += (current_round - 1) * Constant.ROUND_HEALTH_INCREASE
@@ -319,7 +325,7 @@ func spawn_orb():
 	var orb = orb_scene.instantiate()
 
 	orb.global_position = orb_spawn.global_position
-
+	print(orb_spawn.get_parent())
 	get_parent().add_child(orb)
 
 
@@ -352,8 +358,7 @@ func take_damage(amount):
 func die():
 	print("Continues before:", continues_left)
 	if continues_left > 0:
-		continues_left -= 1
-	if continues_left > 0:
+		continues_left-=1
 		continue_game()
 	else:
 		game_over()
@@ -465,7 +470,7 @@ func recoil():
 func enemy_killed():
 	enemies_killed_this_round += 1
 	if enemies_killed_this_round>=enemies_to_kill:
-		start_next_round()
+		start_new_round()
 		
 func start_new_round():
 	current_round +=1
@@ -473,5 +478,13 @@ func start_new_round():
 	enemies_killed_this_round =0
 	enemies_spawned_this_round= 0
 	
-	
-	
+func check_weapon_unlocks():
+	var target_weapon = Constant.WEAPON_GLOCK
+	if current_round >= Constant.ROUND_UNLOCK_MACHINE:
+		target_weapon = Constant.WEAPON_MACHINE
+	elif  current_round>= Constant.ROUND_UNLOCK_SHOTGUN:
+		target_weapon = Constant.WEAPON_SHOTGUN
+	if current_weapon != target_weapon:
+		current_weapon = target_weapon
+		update_weapon()
+		

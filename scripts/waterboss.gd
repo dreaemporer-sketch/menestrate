@@ -1,8 +1,8 @@
 extends "res://scripts/enemy.gd"
 func _ready():
 
-	speed = 60
-	health = 140
+	speed = 100
+	health = 160
 	damage = 25
 	resistance = Constant.ELEMENT_WATER
 

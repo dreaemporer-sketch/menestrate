@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d0mqxtvfl2whc"]
+
+[ext_resource type="Texture2D" uid="uid://cu10h03td0xm1" path="res://img/683c9ad70b7e19001d962865.jpg" id="1_uwdrl"]
+[ext_resource type="Script" uid="uid://8r3213mmnqxm" path="res://scripts/eng_game.gd" id="2_0py74"]
+
+[node name="EndGame" type="Node2D" unique_id=1908486414]
+
+[node name="683c9Ad70b7e19001d962865" type="Sprite2D" parent="." unique_id=44098138]
+position = Vector2(5.0000005, 9.536743e-07)
+scale = Vector2(2.4853516, 1.7548829)
+texture = ExtResource("1_uwdrl")
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=2083393067]
+offset_left = 25.0
+offset_top = -3.0
+offset_right = 1125.0
+offset_bottom = 299.0
+text = "GAME OVER"
+script = ExtResource("2_0py74")

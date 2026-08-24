@@ -4,7 +4,7 @@ var enemy_type =  Constant.ELEMENT_EARTH
 
 func _ready():
 	speed = 220
-	health = 2
+	health = 4
 	resistance = Constant.ELEMENT_EARTH
 	enemy_type = Constant.ELEMENT_EARTH
 	super._ready()
