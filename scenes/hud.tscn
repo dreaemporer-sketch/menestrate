@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8s5px61qpmw7" path="res://scripts/hud.gd" id="1_ahhtf"]
 
-[node name="Hud" type="CanvasLayer" unique_id=1767084392 node_paths=PackedStringArray("player", "panel", "time_label", "weapon_label", "element_label", "round_label", "health_label", "continue_label", "stamina_label", "kills_label")]
+[node name="Hud" type="CanvasLayer" unique_id=1767084392 node_paths=PackedStringArray("player", "panel", "time_label", "weapon_label", "element_label", "round_label", "health_label", "continue_label", "stamina_label", "kills_label", "element_timer_label")]
 script = ExtResource("1_ahhtf")
 player = NodePath("player")
 panel = NodePath("Button")
@@ -14,6 +14,7 @@ health_label = NodePath("health_label")
 continue_label = NodePath("continue_label")
 stamina_label = NodePath("stamina_label")
 kills_label = NodePath("kills_label")
+element_timer_label = NodePath("element_timer_label")
 
 [node name="time_label" type="Label" parent="." unique_id=131145053]
 offset_top = 29.0
@@ -34,10 +35,10 @@ offset_bottom = 105.0
 text = "element:"
 
 [node name="round_label" type="Label" parent="." unique_id=1324131143]
-offset_left = -2.0
-offset_top = 169.0
-offset_right = 45.0
-offset_bottom = 218.0
+offset_left = 555.0
+offset_top = 2.0
+offset_right = 649.0
+offset_bottom = 51.0
 text = "round
 "
 
@@ -82,7 +83,7 @@ text = "menu
 
 [node name="element_timer_label" type="Label" parent="." unique_id=346836455]
 offset_left = -1.0
-offset_top = 188.0
+offset_top = 173.0
 offset_right = 114.0
-offset_bottom = 211.0
+offset_bottom = 196.0
 text = "Element timer:"

@@ -13,11 +13,13 @@ extends CanvasLayer
 @export var element_timer_label: Label
 
 func _process(_delta):
-	if player.current_element != Constant.ELEMENT_NONE:
-		element_timer_label.visible=true
-		element_timer_label.text = player.current_element + "+"
 	if player == null:
 		return
+	if player.current_element != Constant.ELEMENT_NONE:
+		element_timer_label.visible = true
+		element_timer_label.text = player.current_element
+	else:
+		element_timer_label.visible = false
 
 	time_label.text = "needed kills: " + str(player.enemies_killed_this_round) + "/" + str(player.enemies_to_kill)
 	weapon_label.text = "Weapon: " + player.current_weapon
@@ -30,6 +32,7 @@ func _process(_delta):
 
 func _ready():
 	panel.visible = false
+	player = get_tree().get_first_node_in_group("player")
 func _on_button_pressed():
 	panel.visible = !panel.visible
 	

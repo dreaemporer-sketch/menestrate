@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://j7mg4q332deu" path="res://scripts/start.gd" id="1_yq57p"]
 [ext_resource type="Texture2D" uid="uid://b0keaa8dfpig1" path="res://img/play.png" id="2_hc2nf"]
 [ext_resource type="Texture2D" uid="uid://dww5kaoycqgo5" path="res://img/images.png" id="4_oud6e"]
-[ext_resource type="Script" uid="uid://h76f37q18tqg" path="res://scripts/menusetting.gd" id="5_0cxnw"]
 
 [node name="Starting" type="Control" unique_id=543930784]
 process_mode = 3
@@ -51,7 +50,6 @@ offset_right = 1137.0
 offset_bottom = 619.0
 icon = ExtResource("4_oud6e")
 flat = true
-script = ExtResource("5_0cxnw")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

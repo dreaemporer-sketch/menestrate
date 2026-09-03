@@ -42,14 +42,21 @@ func update_bullet_colour():
 	match element:
 		Constant.ELEMENT_FIRE:
 			modulate = Constant.ELEMENT_FIRE_COLOR
+			$Sprite2D/AnimatedSprite2D.play("fire")
 		Constant.ELEMENT_EARTH:
 			modulate = Constant.ELEMENT_EARTH_COLOR
+			$Sprite2D/AnimatedSprite2D.play("earth")
 		Constant. ELEMENT_WATER:
 			modulate = Constant.ELEMENT_WATER_COLOR
+			$Sprite2D/AnimatedSprite2D.play("water")
 		Constant. ELEMENT_WIND:
 			modulate = Constant.ELEMENT_WIND_COLOR
+			$Sprite2D/AnimatedSprite2D.play("wind")
 		Constant. ELEMENT_LIGHTNING:
 			modulate = Constant.ELEMENT_LIGHTNING_COLOR
+			$Sprite2D/AnimatedSprite2D.play("lightning")
 		Constant. ELEMENT_NONE:
 			modulate = Constant.ELEMENT_NONE_COLOR
+			$Sprite2D/AnimatedSprite2D.play("default")
 	
+	 

@@ -4,30 +4,30 @@
 [ext_resource type="Script" uid="uid://bnf2erukyg4bp" path="res://scripts/fireenemy.gd" id="1_ys8cu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ys8cu"]
-size = Vector2(165.01651, 154.31506)
+size = Vector2(742.5743, 694.4177)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwuwk"]
-size = Vector2(165.01651, 154.31505)
+size = Vector2(742.5743, 694.4177)
 
 [node name="Fireenemy" type="CharacterBody2D" unique_id=1527854430]
 scale = Vector2(0.101, 0.098)
 script = ExtResource("1_ys8cu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=266655401]
-position = Vector2(-1.1802899e-06, -2.4328424e-06)
+position = Vector2(-4.7211597e-06, -9.73137e-06)
 scale = Vector2(0.48, 0.529)
 shape = SubResource("RectangleShape2D_ys8cu")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1517773625]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1579252631]
-position = Vector2(-2.3605799e-06, 0)
+position = Vector2(9.442319e-06, 9.73137e-06)
 scale = Vector2(0.48, 0.529)
 shape = SubResource("RectangleShape2D_vwuwk")
 
 [node name="sprite2d" type="Sprite2D" parent="." unique_id=1870880765]
-position = Vector2(1.9073486e-06, 0)
-scale = Vector2(0.48003298, 0.5294315)
+position = Vector2(0, -7.6293945e-06)
+scale = Vector2(2.6117573, 2.713748)
 texture = ExtResource("1_ooup1")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

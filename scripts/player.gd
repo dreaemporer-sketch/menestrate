@@ -6,6 +6,11 @@ extends CharacterBody2D
 # BULLET DAMAGE
 var bullet_damage = 1
 
+#animated sprite2d
+@onready var animated_sprite = $player/AnimatedSprite2D
+#play time tracker
+var total_playtime = 0.0
+
 # ENEMIES
 @export var normal_enemy_scene: PackedScene
 @export var fast_enemy_scene: PackedScene
@@ -39,6 +44,7 @@ var earth_unlocked = false
 @export var water_boss_scene: PackedScene
 @export var lightning_boss_scene: PackedScene
 @export var earth_boss_scene: PackedScene
+
 func spawn_boss():
 	print("trying to spawn the boss", current_round)
 	var boss
@@ -60,6 +66,7 @@ func spawn_boss():
 			print("earth boss initiated")
 			boss = earth_boss_scene.instantiate()
 	if boss == null:
+		
 		return
 
 	enemy_spawn.progress_ratio = randf()
@@ -117,13 +124,14 @@ func _physics_process(delta):
 
 			enemy_spawn_timer = 0
 	
-	if current_element != "none":
+	if current_element != Constant.ELEMENT_NONE:
 
 		element_timer -= delta
 
 		if element_timer <= 0:
 
-			current_element = "none"
+			current_element = Constant.ELEMENT_NONE
+			$player/AnimatedSprite2D.play("Default")
 	if current_round % Constant.BOSS_ROUND_INTERVAL ==0:
 		if not boss_spawned:
 			spawn_boss()
@@ -247,28 +255,48 @@ func shoot():
 
 			bullet.element = current_element
 			bullet.update_bullet_colour()
-			bullet.damage = bullet_damage
+			var final_damage = bullet_damage
+			match current_element:
+				Constant.ELEMENT_FIRE:
+					final_damage +=2
+				Constant.ELEMENT_WATER:
+					final_damage +=3
+				Constant.ELEMENT_EARTH:
+					final_damage +=4
+				Constant.ELEMENT_WIND:
+					final_damage +=1
+				Constant.ELEMENT_LIGHTNING:
+					final_damage +=5
+					
+			bullet.damage = final_damage
 
 	# NORMAL GUNS
 
 	else:
 		var bullet = bullet_scene.instantiate()
-
 		get_parent().add_child(bullet)
-
 		bullet.global_position = current_gun.global_position
-	
-
 		bullet.direction = (
 			get_global_mouse_position()
 			- global_position
 		).normalized()
-
 		bullet.rotation = bullet.direction.angle()
-
 		bullet.element = current_element
-
-		bullet.damage = bullet_damage
+		bullet.update_bullet_colour()
+		var final_damage = bullet_damage
+		match current_element:
+			Constant.ELEMENT_FIRE:
+				final_damage +=2
+			Constant.ELEMENT_WATER:
+				final_damage +=3
+			Constant.ELEMENT_EARTH:
+				final_damage +=4
+			Constant.ELEMENT_WIND:
+				final_damage +=1
+			Constant.ELEMENT_LIGHTNING:
+				final_damage +=5
+				
+		bullet.damage = final_damage
 
 
 # =========================
@@ -292,7 +320,7 @@ func spawn_enemy():
 	if lightning_unlocked:
 		enemies.append(lightning_enemy_scene)
 		
-	if water_unlocked:
+	if wind_unlocked:
 		enemies.append(wind_enemy_scene)
 		
 	if water_unlocked:
@@ -328,7 +356,7 @@ func spawn_orb():
 	print(orb_spawn.get_parent())
 	get_parent().add_child(orb)
 
-
+	
 # =========================
 # ELEMENT
 # =========================
@@ -336,6 +364,20 @@ func spawn_orb():
 func set_element(element):
 	current_element = element
 	element_timer = Constant.ELEMENT_DURATION
+	match element:
+		Constant.ELEMENT_NONE:
+			$player/AnimatedSprite2D.play("Default")
+		Constant.ELEMENT_EARTH:
+			$player/AnimatedSprite2D.play("earth")
+		Constant.ELEMENT_FIRE:
+			$player/AnimatedSprite2D.play("Fire")
+		Constant.ELEMENT_WATER:
+			$player/AnimatedSprite2D.play("water")
+		Constant.ELEMENT_WIND:
+			$player/AnimatedSprite2D.play("wind")
+		Constant.ELEMENT_LIGHTNING:
+			$player/AnimatedSprite2D.play("lightning")
+	
 
 
 # =========================
@@ -356,7 +398,7 @@ func take_damage(amount):
 # =========================
 
 func die():
-	print("Continues before:", continues_left)
+
 	if continues_left > 0:
 		continues_left-=1
 		continue_game()
@@ -388,6 +430,9 @@ func game_over():
 	get_tree().change_scene_to_file(
 		"res://menu.tscn"
 	)
+	get_tree().change_scene_to_file(
+		"res://scenes/end_game.tscn"
+		)
 
 
 # =========================
@@ -418,14 +463,8 @@ func save_game():
 
 func load_game():
 
-	if FileAccess.file_exists(
-		"user://save.save"
-	):
-
-		var file = FileAccess.open(
-			"user://save.save",
-			FileAccess.READ
-		)
+	if FileAccess.file_exists("user://save.save"):
+		var file = FileAccess.open("user://save.save",FileAccess.READ)
 
 		var data = file.get_var()
 
@@ -437,7 +476,14 @@ func load_game():
 
 		current_weapon = data["weapon"]
 		kills = data["kills"]
+		enemies_to_kill = current_round * Constant.ENEMY_PER_ROUND
+		enemies_killed_this_round = 0
+		enemies_spawned_this_round = 0
+		boss_spawned = false
+		orb_spawned_this_round = false
+		check_weapon_unlocks()
 		update_weapon()
+		
 func recoil():
 	
 	var tween = get_tree().create_tween()
@@ -477,7 +523,9 @@ func start_new_round():
 	enemies_to_kill += Constant.ENEMY_PER_ROUND
 	enemies_killed_this_round =0
 	enemies_spawned_this_round= 0
-	
+	boss_spawned = false
+	orb_spawned_this_round = false
+	check_weapon_unlocks()
 func check_weapon_unlocks():
 	var target_weapon = Constant.WEAPON_GLOCK
 	if current_round >= Constant.ROUND_UNLOCK_MACHINE:
@@ -488,3 +536,6 @@ func check_weapon_unlocks():
 		current_weapon = target_weapon
 		update_weapon()
 		
+#================
+#TIMER
+#================

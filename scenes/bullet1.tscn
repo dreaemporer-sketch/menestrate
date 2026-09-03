@@ -1,10 +1,66 @@
 [gd_scene format=3 uid="uid://g8ddcjs8g7t5"]
 
 [ext_resource type="Script" uid="uid://dov0cphtun8d4" path="res://scripts/bullet1.gd" id="1_22742"]
-[ext_resource type="Texture2D" uid="uid://ch3d8e7ltf6im" path="res://img/Capture1.PNG" id="2_4ghaq"]
+[ext_resource type="Texture2D" uid="uid://bndavatrqm4hb" path="res://img/Capture1.PNG" id="2_4ghaq"]
+[ext_resource type="Texture2D" uid="uid://dg8rtec53pj4" path="res://img/earth_bullet.PNG" id="3_t28ld"]
+[ext_resource type="Texture2D" uid="uid://pfoll7svapme" path="res://img/fire_bullet.PNG" id="4_v7ack"]
+[ext_resource type="Texture2D" uid="uid://d1jriy6wwrrxk" path="res://img/ligtenings_bullet.PNG" id="5_4lo0j"]
+[ext_resource type="Texture2D" uid="uid://dm8mx47c8ated" path="res://img/water_bullet.PNG" id="6_kssyn"]
+[ext_resource type="Texture2D" uid="uid://d7atxm1sevr2" path="res://img/wind_bullet.PNG" id="7_m00r7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_611l0"]
 size = Vector2(26, 2)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocrn6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4ghaq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_t28ld")
+}],
+"loop": true,
+"name": &"earth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_v7ack")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4lo0j")
+}],
+"loop": true,
+"name": &"lightening",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kssyn")
+}],
+"loop": true,
+"name": &"water",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_m00r7")
+}],
+"loop": true,
+"name": &"wind",
+"speed": 5.0
+}]
 
 [node name="Bullet1" type="Area2D" unique_id=1147699032]
 script = ExtResource("1_22742")
@@ -16,5 +72,8 @@ shape = SubResource("RectangleShape2D_611l0")
 position = Vector2(-1.1920929e-07, 1.1920929e-07)
 scale = Vector2(0.8125, 0.24999999)
 texture = ExtResource("2_4ghaq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D" unique_id=1922919676]
+sprite_frames = SubResource("SpriteFrames_ocrn6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

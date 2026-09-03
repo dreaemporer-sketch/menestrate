@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://btordufl0valn"]
 
 [ext_resource type="Texture2D" uid="uid://cu10h03td0xm1" path="res://img/683c9ad70b7e19001d962865.jpg" id="1_5p8wc"]
+[ext_resource type="Script" uid="uid://h76f37q18tqg" path="res://scripts/menusetting.gd" id="1_r6d6q"]
+[ext_resource type="PackedScene" uid="uid://c85bqlji0jrfh" path="res://scenes/starting.tscn" id="2_6wm04"]
 
-[node name="Settings" type="Node2D" unique_id=603256362]
+[node name="Settings" type="Control" unique_id=340138413]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r6d6q")
+starting_scene = ExtResource("2_6wm04")
 
 [node name="683c9Ad70b7e19001d962865" type="Sprite2D" parent="." unique_id=1845342237]
 position = Vector2(620, 355)
@@ -10,6 +16,7 @@ scale = Vector2(1.2617188, 1.0019531)
 texture = ExtResource("1_5p8wc")
 
 [node name="TextEdit" type="TextEdit" parent="." unique_id=1647113342]
+layout_mode = 0
 offset_left = 42.0
 offset_top = 21.0
 offset_right = 1092.0
@@ -20,8 +27,19 @@ To move you have to you WASD
 
 space or clicking is for shooting (can hold space or holding the click to shoot continuosly)
 
-R for restart
+q is to pause
 
-p is to pause
+z is to play
 
-o is to play"
+Shift R to restart the game
+
+Control R to restart the eound"
+
+[node name="Button_2" type="Button" parent="." unique_id=2104248304]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 79.0
+offset_bottom = 35.0
+text = "BACK"
+
+[connection signal="pressed" from="Button_2" to="." method="_on_button_pressed"]
