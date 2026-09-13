@@ -9,4 +9,5 @@ func _on_button_2_pressed() -> void:
 		
 func _on_button_pressed() -> void:
 	if starting_scene:
+		Global.current_round = 1
 		get_tree().change_scene_to_packed(starting_scene)

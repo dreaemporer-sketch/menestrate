@@ -78,6 +78,9 @@ func spawn_boss():
 var health = Constant.STARTING_HEALTH
 var stamina = Constant.STARTING_STAMINA
 var continues_left = Constant.STARTING_CONTINUES
+var stamina_drain = Constant.STAMINA_DRAIN
+var stamina_recovery = Constant.STAMINA_RECOVERY
+var can_shoot = true
 var kills = 0
 # WEAPON
 var current_weapon = Constant.WEAPON_GLOCK
@@ -163,7 +166,19 @@ func _physics_process(delta):
 	velocity = direction * speed
 
 	move_and_slide()
-
+#==================
+#stamina
+#==================
+	if direction.length() >0:
+		stamina -= stamina_drain*delta
+		if stamina <=0:
+			stamina = 0
+			can_shoot = false
+	else:
+		stamina +=stamina_recovery * delta
+		if stamina >= Constant.STARTING_STAMINA:
+			stamina = Constant.STARTING_STAMINA 
+			can_shoot = true
 	# LOOK AT MOUSE
 
 	look_at(get_global_mouse_position())
@@ -179,11 +194,8 @@ func _physics_process(delta):
 	# =====================
 
 	if Input.is_action_pressed("shoot"):
-
-		if shoot_timer <= 0:
-
+		if can_shoot and shoot_timer <= 0:
 			shoot()
-
 			shoot_timer = fire_rate
 
 	# =====================
