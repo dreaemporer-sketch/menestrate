@@ -10,6 +10,8 @@ var bullet_damage = 1
 @onready var animated_sprite = $player/AnimatedSprite2D
 #play time tracker
 var total_playtime = 0.0
+#stamina
+@export var stamina_label: Label
 
 # ENEMIES
 @export var normal_enemy_scene: PackedScene
@@ -76,7 +78,7 @@ func spawn_boss():
 
 # PLAYER STATS
 var health = Constant.STARTING_HEALTH
-var stamina = Constant.STARTING_STAMINA
+var stamina: float = Constant.STARTING_STAMINA
 var continues_left = Constant.STARTING_CONTINUES
 var stamina_drain = Constant.STAMINA_DRAIN
 var stamina_recovery = Constant.STAMINA_RECOVERY
@@ -114,6 +116,7 @@ func _ready():
 	load_game()
 	check_weapon_unlocks()
 	update_weapon()
+	set_element(current_element)
 	current_gun = glock
 	
 func _physics_process(delta):
@@ -128,13 +131,10 @@ func _physics_process(delta):
 			enemy_spawn_timer = 0
 	
 	if current_element != Constant.ELEMENT_NONE:
-
 		element_timer -= delta
-
 		if element_timer <= 0:
-
 			current_element = Constant.ELEMENT_NONE
-			$player/AnimatedSprite2D.play("Default")
+			animated_sprite.play("Default")
 	if current_round % Constant.BOSS_ROUND_INTERVAL ==0:
 		if not boss_spawned:
 			spawn_boss()
@@ -169,16 +169,18 @@ func _physics_process(delta):
 #==================
 #stamina
 #==================
-	if direction.length() >0:
-		stamina -= stamina_drain*delta
-		if stamina <=0:
-			stamina = 0
+	if direction.length() > Constant.MIN_STAMINA:
+		stamina -= stamina_drain * delta
+		stamina = max(stamina,Constant.MIN_STAMINA)
+		if int(stamina) <=Constant.MIN_STAMINA:
 			can_shoot = false
 	else:
-		stamina +=stamina_recovery * delta
-		if stamina >= Constant.STARTING_STAMINA:
-			stamina = Constant.STARTING_STAMINA 
+		stamina += stamina_recovery * delta
+		stamina = clamp(stamina, Constant.MIN_STAMINA,Constant.MAX_STAMINA)
+		if int(stamina) >= Constant.STARTING_STAMINA:
 			can_shoot = true
+	if stamina_label:
+		stamina_label.text = str(round(stamina))
 	# LOOK AT MOUSE
 
 	look_at(get_global_mouse_position())
@@ -435,18 +437,12 @@ func continue_game():
 
 func game_over():
 
-	DirAccess.remove_absolute(
-		"user://save.save"
-	)
-
-	get_tree().change_scene_to_file(
-		"res://menu.tscn"
-	)
+	DirAccess.remove_absolute("user://save.save")
+	call_deferred("_go_to_end_game")
+func _go_to_end_game():
 	get_tree().change_scene_to_file(
 		"res://scenes/end_game.tscn"
 		)
-
-
 # =========================
 # SAVE SYSTEM
 # =========================
@@ -538,6 +534,16 @@ func start_new_round():
 	boss_spawned = false
 	orb_spawned_this_round = false
 	check_weapon_unlocks()
+	if current_round == Constant.FIRE_ENEMY_UNLOCK_ROUND:
+		fire_unlocked = true
+	if current_round == Constant.WIND_ENEMY_UNLOCK_ROUND:
+		wind_unlocked = true
+	if current_round == Constant.EARTH_ENEMY_UNLOCK_ROUND:
+		earth_unlocked = true
+	if current_round == Constant.WATER_ENEMY_UNLOCK_ROUND:
+		water_unlocked = true
+	if current_round == Constant.LIGHTNING_ENEMY_UNLOCK_ROUND:
+		lightning_unlocked = true
 func check_weapon_unlocks():
 	var target_weapon = Constant.WEAPON_GLOCK
 	if current_round >= Constant.ROUND_UNLOCK_MACHINE:

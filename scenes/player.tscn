@@ -53,7 +53,7 @@ animations = [{
 "texture": ExtResource("16_60mlk")
 }],
 "loop": true,
-"name": &"lightening",
+"name": &"lightning",
 "speed": 5.0
 }, {
 "frames": [{
@@ -115,7 +115,7 @@ texture = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=1775309054]
 sprite_frames = SubResource("SpriteFrames_fulsm")
-animation = &"Default"
+animation = &"lightning"
 
 [node name="glock" type="Sprite2D" parent="." unique_id=1926005343]
 position = Vector2(1, 0)

@@ -42,7 +42,7 @@ animations = [{
 "texture": ExtResource("5_4lo0j")
 }],
 "loop": true,
-"name": &"lightening",
+"name": &"lightning",
 "speed": 5.0
 }, {
 "frames": [{
@@ -75,5 +75,6 @@ texture = ExtResource("2_4ghaq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D" unique_id=1922919676]
 sprite_frames = SubResource("SpriteFrames_ocrn6")
+animation = &"lightning"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
