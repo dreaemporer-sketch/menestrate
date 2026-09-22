@@ -29,7 +29,7 @@ func _on_line_edit_text_submitted(command:String)-> void:
 		"round":
 			if parts.size() >= 2:
 				player.current_round = int(parts[1])
-				player.enemies_to_kill = player.current_round * Constant.ENEMY_PER_ROUNDdd
+				player.enemies_to_kill = player.current_round * Constant.ENEMY_PER_ROUND
 				player.enemies_killed_this_round = 0
 				player.enemies_spawned_this_round = 0
 				player.boss_spawned = false

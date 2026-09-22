@@ -553,7 +553,3 @@ func check_weapon_unlocks():
 	if current_weapon != target_weapon:
 		current_weapon = target_weapon
 		update_weapon()
-		
-#================
-#TIMER
-#================

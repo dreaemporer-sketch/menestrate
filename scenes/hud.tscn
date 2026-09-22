@@ -35,12 +35,18 @@ offset_bottom = 105.0
 text = "element:"
 
 [node name="round_label" type="Label" parent="." unique_id=1324131143]
-offset_left = 555.0
-offset_top = 2.0
-offset_right = 649.0
-offset_bottom = 51.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_top = 18.0
+offset_right = 47.0
+offset_bottom = 67.0
+grow_horizontal = 2
+size_flags_vertical = 0
 text = "round
 "
+horizontal_alignment = 1
 
 [node name="health_label" type="Label" parent="." unique_id=664900302]
 offset_left = 1.0
@@ -87,3 +93,6 @@ offset_top = 173.0
 offset_right = 114.0
 offset_bottom = 196.0
 text = "Element timer:"
+
+[node name="survival_timer" type="Timer" parent="." unique_id=491733474]
+autostart = true

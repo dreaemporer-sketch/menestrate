@@ -22,6 +22,10 @@ Global="*uid://b70i1qi13f3jv"
 restart="*uid://bwoyq46jukh4u"
 Constant="*uid://dkobfuhve4y75"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 shoot={
