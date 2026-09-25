@@ -20,13 +20,16 @@ _data = {
 point_count = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p57ef"]
-size = Vector2(321, 5806.5)
+size = Vector2(1313, 5806.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
-size = Vector2(304.1875, 5806.5)
+size = Vector2(1518, 5806.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
+size = Vector2(10576.5, 897.9375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iywne"]
-size = Vector2(10576.5, 417.875)
+size = Vector2(10576.5, 897.9375)
 
 [node name="Game" type="Node2D" unique_id=1573141406]
 
@@ -130,20 +133,24 @@ rotation = 1.5813055
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=974349873]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=781002273]
-position = Vector2(7026.5, 397)
+position = Vector2(7767, 397)
 shape = SubResource("RectangleShape2D_p57ef")
+debug_color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=652491591]
-position = Vector2(-3110.0938, 433)
+position = Vector2(-3874, 433)
 shape = SubResource("RectangleShape2D_lbhrr")
+debug_color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=148888659]
-position = Vector2(1964.25, 3098.125)
-shape = SubResource("RectangleShape2D_iywne")
+position = Vector2(2051, 3482)
+shape = SubResource("RectangleShape2D_u5sy4")
+debug_color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1351481026]
-position = Vector2(1994, -2389.9375)
+position = Vector2(2011, -2839)
 shape = SubResource("RectangleShape2D_iywne")
+debug_color = Color(0, 0, 0, 1)
 
 [node name="Hud" parent="." unique_id=1767084392 node_paths=PackedStringArray("player") instance=ExtResource("5_iywne")]
 player = NodePath("../Player")

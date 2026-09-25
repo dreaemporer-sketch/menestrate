@@ -2,13 +2,13 @@ extends "res://scripts/enemy.gd"
 func _ready():
 
 	speed = 70
-	health = 120
+	health = 220
 	damage = 20
 	resistance = Constant.ELEMENT_WIND
 
 	super._ready()
 
-func take_damage(amount, element = "none"):
+func take_damage(amount, element = Constant.ELEMENT_NONE):
 
 	super.take_damage(amount, element)
 

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 100
+@export var speed = 220
 @export var max_health: float = 3.0
 @export var health:float = 3
 var health_pct: float = 1.0
@@ -27,7 +27,7 @@ func _physics_process(delta):
 	if earth_timer > 0:
 		earth_timer -= delta
 		if earth_timer <= 0:
-			earth_timer - 0
+			earth_timer = 0
 	if player != null:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
@@ -37,26 +37,26 @@ func _physics_process(delta):
 		damage_timer -= delta
 		if damage_timer <= 0:
 			player.take_damage(damage)
-			damage_timer = 3.0 
+			damage_timer = Constant.DAMAGE_INTERVAL
 		
 func take_damage(amount, element = Constant.ELEMENT_NONE):
 	if element == resistance:
-		amount *= 0.3
+		amount *= Constant.RESISTANCE_MULTIPLER
 
 	elif element == Constant.ELEMENT_WATER and resistance == Constant.ELEMENT_FIRE:
-		amount *= 2 
+		amount *= Constant.EFFECTIVENESS_MULTIPLIER
 
 	elif element == Constant.ELEMENT_FIRE and resistance == Constant.ELEMENT_EARTH:
-		amount *= 2
+		amount *= Constant.EFFECTIVENESS_MULTIPLIER
 
 	elif element == Constant.ELEMENT_EARTH and resistance ==Constant.ELEMENT_LIGHTNING:
-		amount *= 2
+		amount *= Constant.EFFECTIVENESS_MULTIPLIER
 
 	elif element == Constant.ELEMENT_LIGHTNING and resistance == Constant.ELEMENT_WATER:
-		amount *= 2
+		amount *= Constant.EFFECTIVENESS_MULTIPLIER
 
 	elif element == Constant.ELEMENT_WIND and resistance == Constant.ELEMENT_EARTH:
-		amount *= 2
+		amount *= Constant.EFFECTIVENESS_MULTIPLIER
 	health -= amount
 	update_health_visuals()
 
@@ -81,6 +81,6 @@ func update_health_visuals():
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group(Constant.PLAYER_GROUP):
 		player_in_range = false
 		damage_timer = 0.0 # Clear the timer when they leave

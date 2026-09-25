@@ -139,7 +139,7 @@ func _physics_process(delta):
 		if not boss_spawned:
 			spawn_boss()
 			boss_spawned = true
-	if current_round % 5 == 0:
+	if current_round % Constant.BOSS_ROUND_INTERVAL == 0:
 
 		if orb_spawned_this_round == false:
 
@@ -162,8 +162,10 @@ func _physics_process(delta):
 		"move_up",
 		"move_down"
 	)
-
-	velocity = direction * speed
+	if stamina <= Constant.MIN_STAMINA:
+		velocity = Vector2.ZERO
+	else:
+		velocity = direction * speed 	
 
 	move_and_slide()
 #==================
@@ -172,13 +174,13 @@ func _physics_process(delta):
 	if direction.length() > Constant.MIN_STAMINA:
 		stamina -= stamina_drain * delta
 		stamina = max(stamina,Constant.MIN_STAMINA)
-		if int(stamina) <=Constant.MIN_STAMINA:
-			can_shoot = false
 	else:
 		stamina += stamina_recovery * delta
 		stamina = clamp(stamina, Constant.MIN_STAMINA,Constant.MAX_STAMINA)
-		if int(stamina) >= Constant.STARTING_STAMINA:
-			can_shoot = true
+	if stamina >= Constant.MIN_STAMINA_SHOOT:
+		can_shoot = true
+	else:
+		can_shoot = false
 	if stamina_label:
 		stamina_label.text = str(round(stamina))
 	# LOOK AT MOUSE
@@ -244,9 +246,9 @@ func shoot():
 	recoil()
 	# SHOTGUN
 
-	if current_weapon == "shotgun":
+	if current_weapon == Constant.WEAPON_SHOTGUN:
 
-		for i in range(5):
+		for i in range(Constant.SHOTGUN_PELLETS):
 
 			var bullet = bullet_scene.instantiate()
 
@@ -254,7 +256,7 @@ func shoot():
 
 			bullet.global_position = current_gun.global_position
 
-			var spread = randf_range(-0.2, 0.2)
+			var spread = randf_range(-Constant.SHOTGUN_SPREAD, Constant.SHOTGUN_SPREAD)
 
 			var direction = (
 				get_global_mouse_position()
@@ -440,9 +442,7 @@ func game_over():
 	DirAccess.remove_absolute("user://save.save")
 	call_deferred("_go_to_end_game")
 func _go_to_end_game():
-	get_tree().change_scene_to_file(
-		"res://scenes/end_game.tscn"
-		)
+	get_tree().change_scene_to_file("res://scenes/end_game.tscn")
 # =========================
 # SAVE SYSTEM
 # =========================

@@ -2,7 +2,7 @@ extends "res://scripts/enemy.gd"
 
 func _ready():
 
-	speed = 220
+	speed = 270
 	health = 4
 
 	super._ready()

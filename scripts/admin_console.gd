@@ -35,7 +35,7 @@ func _on_line_edit_text_submitted(command:String)-> void:
 				player.boss_spawned = false
 				var total_kills = 0
 				for i in range(1, player.current_round):
-					total_kills += i * 5
+					total_kills += i * Constant.ENEMY_PER_ROUND
 				player.kills = total_kills
 
 		"health":
